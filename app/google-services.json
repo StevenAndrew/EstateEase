@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "869275644491",
+    "project_id": "estateease-ecf09",
+    "storage_bucket": "estateease-ecf09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869275644491:android:1ac635cae01efcd7c813ce",
+        "android_client_info": {
+          "package_name": "com.example.propertymanagementapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSa7UYc7PxDRl1nbxjEY6zFi32HM3BkHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
