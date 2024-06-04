@@ -48,5 +48,11 @@
         </LinearLayout>
 
     </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_property_divider_height"
+        android:layout_marginTop="@dimen/item_property_divider_marginTop"
+        android:background="@color/divider_color"/>
 
 </LinearLayout>

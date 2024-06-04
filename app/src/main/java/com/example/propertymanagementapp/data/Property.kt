@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Property(
-    val id: String= "",
+    var id: String= "",
     val userid: String = "",
     val name: String = "",
     val createdBy: String = "",

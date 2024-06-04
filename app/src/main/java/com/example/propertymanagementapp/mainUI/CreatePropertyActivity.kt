@@ -158,6 +158,7 @@ class CreatePropertyActivity : BaseActivity() {
 
     fun propertyCreatedSuccessfully(){
         hideProgressDialog()
+        setResult(Activity.RESULT_OK)
         finish()
     }
 

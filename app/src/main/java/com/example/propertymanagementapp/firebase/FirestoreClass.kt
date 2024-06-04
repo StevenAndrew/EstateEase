@@ -28,7 +28,7 @@ class FirestoreClass {
             }
     }
 
-    fun loadUserData(activity: Activity){
+    fun loadUserData(activity: Activity, readPropertyList: Boolean = false){
         mFireStore.collection("Users")
             .document(getCurrentUserID())
             .get()
@@ -43,7 +43,7 @@ class FirestoreClass {
                     }
                     is MainActivity ->{
                         if (loggedInUser != null) {
-                            activity.updateNavigationUserDetails(loggedInUser)
+                            activity.updateNavigationUserDetails(loggedInUser, readPropertyList)
                         }
                     }
                     is MyProfileActivity ->{
@@ -104,6 +104,26 @@ class FirestoreClass {
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error adding property", it)
                 Toast.makeText(activity,"Property added successfully", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun getAllPropertyList(activity: MainActivity){
+        mFireStore.collection("Property")
+            .get()
+            .addOnSuccessListener {
+                document->
+                Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val propertyList: ArrayList<Property> = ArrayList()
+                for (i in document.documents){
+                    val property = i.toObject(Property::class.java)!!
+                    property.id = i.id
+                    propertyList.add(property)
+                }
+
+                activity.populateBoardsListToUI(propertyList)
+            }.addOnFailureListener {
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error getting the property list", it)
             }
     }
 }
