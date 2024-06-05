@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".mainUI.PropertyViewActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main_activity"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/nav_header_main_background"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@drawable/intro_background"
+        android:padding="@dimen/my_profile_screen_content_padding">
+
+        <ImageView
+            android:id="@+id/iv_profile_user_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:contentDescription="@string/image_contentDescription"
+            android:src="@drawable/add_screen_image_placeholder" />
+
+        <TextView
+            android:id="@+id/property_view_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop"
+            android:hint="@string/name"
+            android:textSize="@dimen/et_text_size"/>
+
+        <TextView
+            android:id="@+id/property_view_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop"
+            android:hint="@string/property_description"
+            android:textSize="@dimen/et_text_size"/>
+
+        <TextView
+            android:id="@+id/property_view_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop"
+            android:hint="@string/property_address"
+            android:textSize="@dimen/et_text_size"/>
+
+        <TextView
+            android:id="@+id/property_view_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop"
+            android:hint="@string/property_area"
+            android:textSize="@dimen/et_text_size"/>
+
+        <TextView
+            android:id="@+id/property_view_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop"
+            android:hint="@string/property_price"
+            android:textSize="@dimen/et_text_size"/>
+
+        <TextView
+            android:id="@+id/property_view_owner_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop"
+            android:hint="@string/owner_mobile"
+            android:textSize="@dimen/et_text_size"/>
+
+        <TextView
+            android:id="@+id/property_view_owner_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop"
+            android:hint="@string/owner_email"
+            android:textSize="@dimen/et_text_size"/>
+
+
+        <Button
+            android:id="@+id/btn_open_in_maps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/my_profile_btn_update_marginTop"
+            android:background="@drawable/shape_button_rounded"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="@dimen/btn_paddingTopBottom"
+            android:paddingBottom="@dimen/btn_paddingTopBottom"
+            android:text="@string/open_in_maps"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/btn_text_size" />
+    </LinearLayout>
+
+</LinearLayout>

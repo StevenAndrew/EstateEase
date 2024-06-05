@@ -126,4 +126,44 @@ class FirestoreClass {
                 Log.e(activity.javaClass.simpleName, "Error getting the property list", it)
             }
     }
+
+    fun loadUserDataInProperty(activity: Activity, propertyInfo: Property){
+        mFireStore.collection("Users")
+            .document(propertyInfo.userid)
+            .get()
+            .addOnSuccessListener {document ->
+                val ownerData = document.toObject(User::class.java)
+
+                //TODO update accordingly
+//                when (activity){
+//                    is SignInActivity -> {
+//                        if (loggedInUser != null) {
+//                            activity.signInSuccess(loggedInUser)
+//                        }
+//                    }
+//                    is MainActivity ->{
+//                        if (loggedInUser != null) {
+//                            activity.updateNavigationUserDetails(loggedInUser, readPropertyList)
+//                        }
+//                    }
+//                    is MyProfileActivity ->{
+//                        if (loggedInUser != null) {
+//                            activity.setUserDataInUI(loggedInUser)
+//                        }
+//                    }
+//                }
+            }.addOnFailureListener{
+                    e->
+                //TODO update accordingly
+//                when (activity){
+//                    is SignInActivity -> {
+//                        activity.hideProgressDialog()
+//                    }
+//                    is MainActivity ->{
+//                        activity.hideProgressDialog()
+//                    }
+//                }
+//                Log.e("SignInUser","Error writing document",e)
+            }
+    }
 }

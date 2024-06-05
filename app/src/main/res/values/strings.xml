@@ -48,7 +48,10 @@
     <string name="add_property">Add Property</string>
 
     <string name="google_maps_api_key">AIzaSyDQjlnua1hHYK2EQpJL1cFFxlpnc22uwe8</string>
-    
+
     <string name="no_properties_are_available">No Properties are available</string>
+    <string name="open_in_maps">Open In Maps</string>
+    <string name="owner_mobile">Owner Mobile Phone Number</string>
+    <string name="owner_email">Owner Email</string>
 
 </resources>
