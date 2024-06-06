@@ -65,6 +65,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             val adapter = PropertyItemsAdapter(this, propertyList)
             findViewById<RecyclerView>(R.id.rv_property_list).adapter = adapter
+
+            adapter.setOnClickListener(object: PropertyItemsAdapter.OnClickListener{
+                override fun onClick(position: Int, model: Property) {
+                    val intent = Intent(this@MainActivity, PropertyViewActivity::class.java)
+                    intent.putExtra("id", model.id)
+                    startActivity(intent)
+                }
+            })
         }else{
             findViewById<RecyclerView>(R.id.rv_property_list).visibility = View.GONE
             findViewById<TextView>(R.id.tv_no_properties_available).visibility = View.VISIBLE

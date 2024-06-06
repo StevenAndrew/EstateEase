@@ -216,6 +216,7 @@ class CreatePropertyActivity : BaseActivity() {
         }
     }
 
+
     private fun registerProperty(){
         val name: String = findViewById<AppCompatEditText>(R.id.create_property_name).text.toString().trim{it<=' '}
         val description: String = findViewById<AppCompatEditText>(R.id.create_property_description).text.toString().trim{it<=' '}
@@ -233,7 +234,7 @@ class CreatePropertyActivity : BaseActivity() {
             area = area,
             price = price,
             latitude = mLatitude,
-            longitude = mLongitude
+            longitude = mLongitude,
         )
         FirestoreClass().createProperty(this,property)
     }

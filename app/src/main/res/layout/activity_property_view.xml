@@ -14,11 +14,21 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_main_activity"
+            android:id="@+id/toolbar_property_view_activity"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/nav_header_main_background"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <Button
+                android:id="@+id/property_edit_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="gone"
+                android:background="@drawable/baseline_edit_24"
+                android:layout_marginHorizontal="360dp"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -28,12 +38,14 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:background="@drawable/intro_background"
-        android:padding="@dimen/my_profile_screen_content_padding">
+        android:paddingBottom="@dimen/my_profile_screen_content_padding"
+        android:paddingLeft="@dimen/my_profile_screen_content_padding"
+        android:paddingRight="@dimen/my_profile_screen_content_padding">
 
         <ImageView
-            android:id="@+id/iv_profile_user_image"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:id="@+id/iv_property_details_image"
+            android:layout_width="410dp"
+            android:layout_height="200dp"
             android:contentDescription="@string/image_contentDescription"
             android:src="@drawable/add_screen_image_placeholder" />
 

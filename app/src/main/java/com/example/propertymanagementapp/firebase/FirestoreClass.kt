@@ -10,6 +10,7 @@ import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.mainUI.CreatePropertyActivity
 import com.example.propertymanagementapp.mainUI.MainActivity
 import com.example.propertymanagementapp.mainUI.MyProfileActivity
+import com.example.propertymanagementapp.mainUI.PropertyViewActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -127,43 +128,47 @@ class FirestoreClass {
             }
     }
 
+    fun getPropertyDetails(activity: Activity, propertyId: String){
+        mFireStore.collection("Property")
+            .document(propertyId)
+            .get()
+            .addOnSuccessListener {
+                document ->
+                Log.i(activity.javaClass.simpleName, document.toString())
+                when (activity){
+                    is PropertyViewActivity -> {
+                        activity.propertyDetails(document.toObject(Property::class.java)!!)
+                        loadUserDataInProperty(activity, document.toObject(Property::class.java)!!)
+                    }
+                }
+            }.addOnFailureListener{
+                when (activity){
+                    is PropertyViewActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+            }
+    }
+
     fun loadUserDataInProperty(activity: Activity, propertyInfo: Property){
         mFireStore.collection("Users")
             .document(propertyInfo.userid)
             .get()
-            .addOnSuccessListener {document ->
-                val ownerData = document.toObject(User::class.java)
+            .addOnSuccessListener {
+                document ->
+                Log.i(activity.javaClass.simpleName, document.toString())
+                when (activity){
+                    is PropertyViewActivity -> {
+                        activity.userDetailsFromProperty(document.toObject(User::class.java)!!)
+                    }
+                }
 
-                //TODO update accordingly
-//                when (activity){
-//                    is SignInActivity -> {
-//                        if (loggedInUser != null) {
-//                            activity.signInSuccess(loggedInUser)
-//                        }
-//                    }
-//                    is MainActivity ->{
-//                        if (loggedInUser != null) {
-//                            activity.updateNavigationUserDetails(loggedInUser, readPropertyList)
-//                        }
-//                    }
-//                    is MyProfileActivity ->{
-//                        if (loggedInUser != null) {
-//                            activity.setUserDataInUI(loggedInUser)
-//                        }
-//                    }
-//                }
             }.addOnFailureListener{
-                    e->
-                //TODO update accordingly
-//                when (activity){
-//                    is SignInActivity -> {
-//                        activity.hideProgressDialog()
-//                    }
-//                    is MainActivity ->{
-//                        activity.hideProgressDialog()
-//                    }
-//                }
-//                Log.e("SignInUser","Error writing document",e)
+                when (activity){
+                    is PropertyViewActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
             }
     }
 }

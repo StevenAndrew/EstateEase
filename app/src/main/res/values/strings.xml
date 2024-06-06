@@ -43,7 +43,7 @@
     <string name="property_name">Property Name</string>
     <string name="property_description">Property Description</string>
     <string name="property_address">Property Address</string>
-    <string name="property_area">Property Area in meter2</string>
+    <string name="property_area">Property Area in Meter2</string>
     <string name="property_price">Property Price in Rupiah</string>
     <string name="add_property">Add Property</string>
 
@@ -53,5 +53,7 @@
     <string name="open_in_maps">Open In Maps</string>
     <string name="owner_mobile">Owner Mobile Phone Number</string>
     <string name="owner_email">Owner Email</string>
+
+    <string name="property_info">Property Info</string>
 
 </resources>

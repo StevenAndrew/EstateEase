@@ -49,6 +49,10 @@ open class PropertyItemsAdapter(private val context: Context,
         fun onClick(position: Int, model: Property)
     }
 
+    fun setOnClickListener(onClickListener: OnClickListener){
+        this.onClickListener = onClickListener
+    }
+
     private class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
 }
