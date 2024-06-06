@@ -20,14 +20,6 @@
             android:background="@drawable/nav_header_main_background"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <Button
-                android:id="@+id/property_edit_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="gone"
-                android:background="@drawable/baseline_edit_24"
-                android:layout_marginHorizontal="360dp"/>
-
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -120,6 +112,52 @@
             android:text="@string/open_in_maps"
             android:textColor="@android:color/white"
             android:textSize="@dimen/btn_text_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_edit_property"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_button_rounded"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingTop="@dimen/btn_paddingTopBottom"
+                android:paddingBottom="@dimen/btn_paddingTopBottom"
+                android:gravity="center"
+                android:text="@string/edit_property"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/btn_text_size"
+                android:visibility="invisible"/>
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="@dimen/nav_divider_height"
+                android:background="@color/white" />
+
+            <Button
+                android:id="@+id/btn_delete_property"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/delete_button_rounded"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingTop="@dimen/btn_paddingTopBottom"
+                android:paddingBottom="@dimen/btn_paddingTopBottom"
+                android:gravity="center"
+                android:text="@string/delete_property"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/btn_text_size"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>

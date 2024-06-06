@@ -2,9 +2,12 @@ package com.example.propertymanagementapp.firebase
 
 import android.app.Activity
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import com.example.propertymanagementapp.LoginActivities.SignInActivity
 import com.example.propertymanagementapp.LoginActivities.SignUpActivity
+import com.example.propertymanagementapp.R
 import com.example.propertymanagementapp.data.Property
 import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.mainUI.CreatePropertyActivity
@@ -160,6 +163,14 @@ class FirestoreClass {
                 when (activity){
                     is PropertyViewActivity -> {
                         activity.userDetailsFromProperty(document.toObject(User::class.java)!!)
+                        //TODO find out how to only show edit only when the owner clicks on the property info
+                        if(propertyInfo.userid == getCurrentUserID()){
+                            activity.findViewById<Button>(R.id.btn_edit_property).visibility = View.VISIBLE
+                            activity.findViewById<Button>(R.id.btn_delete_property).visibility = View.VISIBLE
+                        }else{
+                            activity.findViewById<Button>(R.id.btn_edit_property).visibility = View.INVISIBLE
+                            activity.findViewById<Button>(R.id.btn_delete_property).visibility = View.INVISIBLE
+                        }
                     }
                 }
 

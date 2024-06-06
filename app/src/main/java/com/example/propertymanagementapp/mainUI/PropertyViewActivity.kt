@@ -36,17 +36,12 @@ class PropertyViewActivity : BaseActivity() {
         }
         showProgressDialog()
         FirestoreClass().getPropertyDetails(this, propertyId)
-        //TODO fix error show edit button
-//        if (mPropertyDetails.userid == propertyId){
-//            findViewById<Button>(R.id.property_edit_button).visibility = View.VISIBLE
-//        }else{
-//            findViewById<Button>(R.id.property_edit_button).visibility = View.GONE
-//        }
     }
 
     private fun setupActionBar() {
         setSupportActionBar(findViewById(R.id.toolbar_property_view_activity))
         val actionBar = supportActionBar
+        val editBar = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_white_arrow_back_24)
