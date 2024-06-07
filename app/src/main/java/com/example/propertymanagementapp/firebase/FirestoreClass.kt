@@ -163,7 +163,6 @@ class FirestoreClass {
                 when (activity){
                     is PropertyViewActivity -> {
                         activity.userDetailsFromProperty(document.toObject(User::class.java)!!)
-                        //TODO find out how to only show edit only when the owner clicks on the property info
                         if(propertyInfo.userid == getCurrentUserID()){
                             activity.findViewById<Button>(R.id.btn_edit_property).visibility = View.VISIBLE
                             activity.findViewById<Button>(R.id.btn_delete_property).visibility = View.VISIBLE

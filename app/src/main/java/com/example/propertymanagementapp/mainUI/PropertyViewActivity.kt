@@ -1,5 +1,7 @@
 package com.example.propertymanagementapp.mainUI
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -36,12 +38,16 @@ class PropertyViewActivity : BaseActivity() {
         }
         showProgressDialog()
         FirestoreClass().getPropertyDetails(this, propertyId)
+        findViewById<Button>(R.id.btn_open_in_maps).setOnClickListener{
+            val geoUri: String = "http://maps.google.com/maps?q=loc:"+mPropertyDetails.latitude+","+mPropertyDetails.longitude+"("+mPropertyDetails.address+")"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
+            startActivity(intent)
+        }
     }
 
     private fun setupActionBar() {
         setSupportActionBar(findViewById(R.id.toolbar_property_view_activity))
         val actionBar = supportActionBar
-        val editBar = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_white_arrow_back_24)
