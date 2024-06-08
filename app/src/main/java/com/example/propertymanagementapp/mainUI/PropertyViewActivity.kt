@@ -46,6 +46,7 @@ class PropertyViewActivity : BaseActivity() {
 
         findViewById<Button>(R.id.btn_edit_property).setOnClickListener{
             val intent = Intent(this, PropertyEditActivity::class.java)
+            intent.putExtra("id", propertyId)
             startActivity(intent)
         }
     }

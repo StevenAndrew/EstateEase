@@ -44,7 +44,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+            android:layout_marginTop="15dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_name_edit_property"
@@ -58,7 +58,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+            android:layout_marginTop="15dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_description_edit_property"
@@ -72,12 +72,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+            android:layout_marginTop="15dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_address_edit_property"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="@string/property_address"
                 android:textSize="@dimen/et_text_size" />
 
@@ -86,7 +88,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+            android:layout_marginTop="15dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_area_edit_property"
@@ -100,7 +102,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+            android:layout_marginTop="15dp">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_price_edit_property"
@@ -111,9 +113,8 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <Button
-            android:id="@+id/btn_open_in_maps"
+            android:id="@+id/btn_update_property"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

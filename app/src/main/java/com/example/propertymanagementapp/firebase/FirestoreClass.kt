@@ -13,6 +13,7 @@ import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.mainUI.CreatePropertyActivity
 import com.example.propertymanagementapp.mainUI.MainActivity
 import com.example.propertymanagementapp.mainUI.MyProfileActivity
+import com.example.propertymanagementapp.mainUI.PropertyEditActivity
 import com.example.propertymanagementapp.mainUI.PropertyViewActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -81,7 +82,7 @@ class FirestoreClass {
             }.addOnFailureListener {
                 e ->
                 activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while creating a board",e)
+                Log.e(activity.javaClass.simpleName, "Error when updating the profile",e)
                 Toast.makeText(activity, "Error when updating the profile!", Toast.LENGTH_LONG).show()
             }
     }
@@ -143,10 +144,16 @@ class FirestoreClass {
                         activity.propertyDetails(document.toObject(Property::class.java)!!)
                         loadUserDataInProperty(activity, document.toObject(Property::class.java)!!)
                     }
+                    is PropertyEditActivity ->{
+                        activity.updatePropertyDetails(document.toObject(Property::class.java)!!)
+                    }
                 }
             }.addOnFailureListener{
                 when (activity){
                     is PropertyViewActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is PropertyEditActivity ->{
                         activity.hideProgressDialog()
                     }
                 }
@@ -179,6 +186,22 @@ class FirestoreClass {
                         activity.hideProgressDialog()
                     }
                 }
+            }
+    }
+
+    fun updatePropertyData(activity: PropertyEditActivity, propertyHashMap: HashMap<String, Any>, propertyId: String){
+        mFireStore.collection("Property")
+            .document(propertyId)
+            .update(propertyHashMap)
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "Property updated successfully!")
+                Toast.makeText(activity, "Property updated successfully!", Toast.LENGTH_LONG).show()
+                activity.propertyUpdateSuccess()
+            }.addOnFailureListener {
+                    e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while updating the Property",e)
+                Toast.makeText(activity, "Error when updating the Property!", Toast.LENGTH_LONG).show()
             }
     }
 }
