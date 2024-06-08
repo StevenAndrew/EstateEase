@@ -43,6 +43,11 @@ class PropertyViewActivity : BaseActivity() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
             startActivity(intent)
         }
+
+        findViewById<Button>(R.id.btn_edit_property).setOnClickListener{
+            val intent = Intent(this, PropertyEditActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupActionBar() {

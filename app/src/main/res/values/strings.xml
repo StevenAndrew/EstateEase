@@ -57,5 +57,6 @@
     <string name="property_info">Property Info</string>
     <string name="edit_property">Edit Property</string>
     <string name="delete_property">Delete Property</string>
+    <string name="update_property">Update Property</string>
 
 </resources>

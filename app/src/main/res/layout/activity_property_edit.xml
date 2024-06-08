@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".mainUI.PropertyEditActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_property_edit_activity"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/nav_header_main_background"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@drawable/intro_background"
+        android:paddingBottom="@dimen/my_profile_screen_content_padding"
+        android:paddingLeft="@dimen/my_profile_screen_content_padding"
+        android:paddingRight="@dimen/my_profile_screen_content_padding">
+
+        <ImageView
+            android:id="@+id/iv_property_details_image"
+            android:layout_width="410dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/image_contentDescription"
+            android:src="@drawable/add_screen_image_placeholder" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_name_edit_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:textSize="@dimen/et_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_description_edit_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/property_description"
+                android:textSize="@dimen/et_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_address_edit_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/property_address"
+                android:textSize="@dimen/et_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_area_edit_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/property_area"
+                android:textSize="@dimen/et_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_profile_name_til_marginTop">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_price_edit_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/property_price"
+                android:textSize="@dimen/et_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn_open_in_maps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/my_profile_btn_update_marginTop"
+            android:background="@drawable/shape_button_rounded"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="@dimen/btn_paddingTopBottom"
+            android:paddingBottom="@dimen/btn_paddingTopBottom"
+            android:text="@string/update_property"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/btn_text_size" />
+
+    </LinearLayout>
+
+</LinearLayout>
