@@ -73,10 +73,6 @@ class PropertyViewActivity : BaseActivity() {
                 findViewById<ImageView>(R.id.iv_property_details_image).visibility = View.VISIBLE
             }
         }
-
-
-
-
     }
 
     fun onDeletePropertySuccess(){
@@ -97,6 +93,7 @@ class PropertyViewActivity : BaseActivity() {
         findViewById<Toolbar>(R.id.toolbar_property_view_activity).setNavigationOnClickListener { onBackPressed() }
     }
 
+    //populate UI with property details
     fun propertyDetails(property: Property){
         hideProgressDialog()
         mPropertyDetails = property
@@ -114,6 +111,7 @@ class PropertyViewActivity : BaseActivity() {
         findViewById<TextView>(R.id.property_view_price).setText("Property Price in Rupiah: " + property.price.toString())
     }
 
+    //populate UI with user details
     fun userDetailsFromProperty(user: User){
         hideProgressDialog()
         mPropertyOwnerDetails = user

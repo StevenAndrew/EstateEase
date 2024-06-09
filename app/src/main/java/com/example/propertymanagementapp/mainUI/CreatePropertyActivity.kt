@@ -64,6 +64,7 @@ class CreatePropertyActivity : BaseActivity() {
             mUserName = intent.getStringExtra(Constants.NAME).toString()
         }
 
+        //open maps when entering address
         findViewById<AppCompatEditText>(R.id.create_property_address).setOnClickListener{
             try {
                 val fields = listOf(
@@ -216,7 +217,7 @@ class CreatePropertyActivity : BaseActivity() {
         }
     }
 
-
+    //register property on firestore database
     private fun registerProperty(){
         val name: String = findViewById<AppCompatEditText>(R.id.create_property_name).text.toString().trim{it<=' '}
         val description: String = findViewById<AppCompatEditText>(R.id.create_property_description).text.toString().trim{it<=' '}

@@ -123,6 +123,7 @@ class PropertyEditActivity : BaseActivity() {
         findViewById<Toolbar>(R.id.toolbar_property_edit_activity).setNavigationOnClickListener { onBackPressed() }
     }
 
+    //populate UI with property details
     fun updatePropertyDetails(property: Property){
         mPropertyDetails = property
         mLatitude = property.latitude
@@ -181,6 +182,7 @@ class PropertyEditActivity : BaseActivity() {
         }
     }
 
+    //create property hashmap
     private fun updateProperty(){
         val propertyHashMap = HashMap<String, Any>()
 
@@ -251,6 +253,7 @@ class PropertyEditActivity : BaseActivity() {
         }
     }
 
+    //move to MainActivity when done
     fun propertyUpdateSuccess(){
         hideProgressDialog()
         startActivity(Intent(this, MainActivity::class.java))
