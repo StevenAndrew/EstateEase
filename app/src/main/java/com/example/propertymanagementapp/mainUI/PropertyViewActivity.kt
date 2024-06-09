@@ -54,6 +54,29 @@ class PropertyViewActivity : BaseActivity() {
             showProgressDialog()
             FirestoreClass().deletePropertyData(this, propertyId)
         }
+
+        findViewById<ImageView>(R.id.iv_property_details_image).setOnClickListener{
+            findViewById<ImageView>(R.id.iv_property_details_zoom_image).visibility = View.VISIBLE
+            findViewById<Button>(R.id.btn_zoom_out_property).visibility = View.VISIBLE
+            findViewById<ImageView>(R.id.iv_property_details_image).visibility = View.GONE
+
+            Glide
+                .with(this)
+                .load(mPropertyDetails.image)
+                .centerCrop()
+                .placeholder(R.drawable.add_screen_image_placeholder)
+                .into(findViewById<ImageView>(R.id.iv_property_details_zoom_image))
+
+            findViewById<Button>(R.id.btn_zoom_out_property).setOnClickListener{
+                findViewById<ImageView>(R.id.iv_property_details_zoom_image).visibility = View.GONE
+                findViewById<Button>(R.id.btn_zoom_out_property).visibility = View.GONE
+                findViewById<ImageView>(R.id.iv_property_details_image).visibility = View.VISIBLE
+            }
+        }
+
+
+
+
     }
 
     fun onDeletePropertySuccess(){

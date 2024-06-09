@@ -14,7 +14,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@drawable/intro_background"
         android:elevation="@dimen/card_view_elevation"
         app:cardCornerRadius="@dimen/card_view_corner_radius">
 
@@ -22,6 +22,7 @@
             android:id="@+id/rv_property_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/intro_background"
             android:visibility="gone"/>
 
         <TextView
@@ -30,6 +31,7 @@
             android:layout_height="match_parent"
             android:text="@string/no_properties_are_available"
             android:gravity="center"
+            android:background="@drawable/intro_background"
             android:textColor="@color/secondary_text_color"
             android:textSize="@dimen/no_properties_available_text_size"/>
 
