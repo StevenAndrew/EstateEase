@@ -204,4 +204,20 @@ class FirestoreClass {
                 Toast.makeText(activity, "Error when updating the Property!", Toast.LENGTH_LONG).show()
             }
     }
+
+    fun deletePropertyData(activity: PropertyViewActivity, propertyId: String){
+        mFireStore.collection("Property")
+            .document(propertyId)
+            .delete()
+            .addOnSuccessListener {
+                activity.onDeletePropertySuccess()
+                Toast.makeText(activity, "Property deleted successfully!", Toast.LENGTH_LONG).show()
+
+            }.addOnFailureListener {
+                    e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error deleting the Property",e)
+                Toast.makeText(activity, "Error deleting Property!", Toast.LENGTH_LONG).show()
+            }
+    }
 }

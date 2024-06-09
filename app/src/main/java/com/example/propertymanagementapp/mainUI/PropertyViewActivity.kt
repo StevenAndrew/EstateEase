@@ -49,6 +49,18 @@ class PropertyViewActivity : BaseActivity() {
             intent.putExtra("id", propertyId)
             startActivity(intent)
         }
+
+        findViewById<Button>(R.id.btn_delete_property).setOnClickListener{
+            showProgressDialog()
+            FirestoreClass().deletePropertyData(this, propertyId)
+        }
+    }
+
+    fun onDeletePropertySuccess(){
+        hideProgressDialog()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun setupActionBar() {
