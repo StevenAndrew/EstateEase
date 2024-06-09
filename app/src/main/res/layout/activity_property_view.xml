@@ -110,6 +110,8 @@
             android:id="@+id/property_view_owner_mobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/quantum_lightblue"
+
             android:layout_marginTop="@dimen/my_profile_name_til_marginTop"
             android:hint="@string/owner_mobile"
             android:textSize="@dimen/et_text_size"/>

@@ -9,10 +9,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
@@ -23,7 +21,6 @@ import com.bumptech.glide.Glide
 import com.example.propertymanagementapp.LoginActivities.BaseActivity
 import com.example.propertymanagementapp.R
 import com.example.propertymanagementapp.data.Property
-import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.firebase.FirestoreClass
 import com.example.propertymanagementapp.utils.Constants
 import com.google.android.libraries.places.api.Places

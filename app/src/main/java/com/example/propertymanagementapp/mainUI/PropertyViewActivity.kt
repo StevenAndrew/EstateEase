@@ -44,6 +44,11 @@ class PropertyViewActivity : BaseActivity() {
             startActivity(intent)
         }
 
+        findViewById<TextView>(R.id.property_view_owner_mobile).setOnClickListener{
+            val callIntent: Intent  = Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + mPropertyOwnerDetails.mobileNumber.toString()))
+            startActivity(callIntent)
+        }
+
         findViewById<Button>(R.id.btn_edit_property).setOnClickListener{
             val intent = Intent(this, PropertyEditActivity::class.java)
             intent.putExtra("id", propertyId)

@@ -3,6 +3,7 @@ package com.example.propertymanagementapp.data
 import android.os.Parcel
 import android.os.Parcelable
 
+//TODO change mobileNumber to String
 data class User(
     val id: String= "",
     val name: String= "",
