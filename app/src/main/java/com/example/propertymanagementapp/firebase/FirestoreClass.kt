@@ -211,13 +211,13 @@ class FirestoreClass {
             .delete()
             .addOnSuccessListener {
                 activity.onDeletePropertySuccess()
-                Toast.makeText(activity, "Property deleted successfully!", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Property deleted successfully!", Toast.LENGTH_SHORT).show()
 
             }.addOnFailureListener {
                     e ->
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error deleting the Property",e)
-                Toast.makeText(activity, "Error deleting Property!", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Error deleting Property!", Toast.LENGTH_SHORT).show()
             }
     }
 }

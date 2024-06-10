@@ -3,10 +3,12 @@ package com.example.propertymanagementapp.mainUI
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
@@ -17,6 +19,9 @@ import com.example.propertymanagementapp.R
 import com.example.propertymanagementapp.data.Property
 import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.firebase.FirestoreClass
+import com.example.propertymanagementapp.utils.Constants
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class PropertyViewActivity : BaseActivity() {
 
@@ -57,6 +62,7 @@ class PropertyViewActivity : BaseActivity() {
 
         findViewById<Button>(R.id.btn_delete_property).setOnClickListener{
             showProgressDialog()
+            deletePropertyImage()
             FirestoreClass().deletePropertyData(this, propertyId)
         }
 
@@ -85,6 +91,17 @@ class PropertyViewActivity : BaseActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun deletePropertyImage(){
+        showProgressDialog()
+        val imageName = mPropertyDetails.image.substring(75,106)
+        val sRef : StorageReference =
+            FirebaseStorage.getInstance().reference.child(
+                imageName
+            )     //Firebase Storage Reference, rename to pathString in storage
+        sRef.delete()
+        Toast.makeText(this, imageName, Toast.LENGTH_LONG).show()
     }
 
     private fun setupActionBar() {
