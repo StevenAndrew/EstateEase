@@ -127,10 +127,10 @@ class PropertyViewActivity : BaseActivity() {
             .into(findViewById<ImageView>(R.id.iv_property_details_image))
 
         findViewById<TextView>(R.id.property_view_name).setText("Name: " + property.name)
-        findViewById<TextView>(R.id.property_view_description).setText("Property Description: " +property.description)
-        findViewById<TextView>(R.id.property_view_address).setText("Property Address: " +property.address)
-        findViewById<TextView>(R.id.property_view_area).setText("Property Area in Meter2: " + property.area.toString())
-        findViewById<TextView>(R.id.property_view_price).setText("Property Price in Rupiah: " + property.price.toString())
+        findViewById<TextView>(R.id.property_view_description).setText("Description: " +property.description)
+        findViewById<TextView>(R.id.property_view_address).setText("Address: " +property.address)
+        findViewById<TextView>(R.id.property_view_area).setText("Area in Meter2: " + property.area.toString())
+        findViewById<TextView>(R.id.property_view_price).setText("Price in Rupiah: " + property.price.toString())
     }
 
     //populate UI with user details

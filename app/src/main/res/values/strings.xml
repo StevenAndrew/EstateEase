@@ -40,11 +40,11 @@
     <string name="edit_text_hint_location">Location</string>
     <string name="text_add_image">ADD IMAGE</string>
     <string name="btn_text_save">SAVE</string>
-    <string name="property_name">Property Name</string>
-    <string name="property_description">Property Description</string>
-    <string name="property_address">Property Address</string>
-    <string name="property_area">Property Area in Meter2</string>
-    <string name="property_price">Property Price in Rupiah</string>
+    <string name="property_name">Name</string>
+    <string name="property_description">Description</string>
+    <string name="property_address">Address</string>
+    <string name="property_area">Area in Meter2</string>
+    <string name="property_price">Price in Rupiah</string>
     <string name="add_property">Add Property</string>
 
     <string name="google_maps_api_key">AIzaSyDQjlnua1hHYK2EQpJL1cFFxlpnc22uwe8</string>
