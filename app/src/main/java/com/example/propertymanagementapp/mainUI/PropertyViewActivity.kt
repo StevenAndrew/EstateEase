@@ -128,6 +128,7 @@ class PropertyViewActivity : BaseActivity() {
 
         findViewById<TextView>(R.id.property_view_name).setText("Name: " + property.name)
         findViewById<TextView>(R.id.property_view_description).setText("Description: " +property.description)
+        findViewById<TextView>(R.id.property_view_rooms).setText("Rooms: " + property.rooms.toString())
         findViewById<TextView>(R.id.property_view_address).setText("Address: " +property.address)
         findViewById<TextView>(R.id.property_view_area).setText("Area in Meter2: " + property.area.toString())
         findViewById<TextView>(R.id.property_view_price).setText("Price in Rupiah: " + property.price.toString())

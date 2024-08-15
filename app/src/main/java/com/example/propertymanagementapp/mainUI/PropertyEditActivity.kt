@@ -134,6 +134,7 @@ class PropertyEditActivity : BaseActivity() {
             .into(findViewById<ImageView>(R.id.iv_property_details_image))
         findViewById<AppCompatEditText>(R.id.et_name_edit_property).setText(property.name)
         findViewById<AppCompatEditText>(R.id.et_description_edit_property).setText(property.description)
+        findViewById<AppCompatEditText>(R.id.et_rooms_edit_property).setText(property.rooms.toString())
         findViewById<AppCompatEditText>(R.id.et_address_edit_property).setText(property.address)
         findViewById<AppCompatEditText>(R.id.et_area_edit_property).setText(property.area.toString())
         findViewById<AppCompatEditText>(R.id.et_price_edit_property).setText(property.price.toString())
@@ -193,6 +194,10 @@ class PropertyEditActivity : BaseActivity() {
 
         if (findViewById<AppCompatEditText>(R.id.et_description_edit_property).text.toString() != mPropertyDetails.description){
             propertyHashMap["description"] = findViewById<AppCompatEditText>(R.id.et_description_edit_property).text.toString()
+        }
+
+        if (findViewById<AppCompatEditText>(R.id.et_rooms_edit_property).toString() != mPropertyDetails.rooms.toString()){
+            propertyHashMap["rooms"] = findViewById<AppCompatEditText>(R.id.et_rooms_edit_property).text.toString().toLong()
         }
 
         if (findViewById<AppCompatEditText>(R.id.et_address_edit_property).text.toString() != mPropertyDetails.address){

@@ -42,6 +42,7 @@
     <string name="btn_text_save">SAVE</string>
     <string name="property_name">Name</string>
     <string name="property_description">Description</string>
+    <string name="property_room">Rooms</string>
     <string name="property_address">Address</string>
     <string name="property_area">Area in Meter2</string>
     <string name="property_price">Price in Rupiah</string>

@@ -75,6 +75,21 @@
             android:layout_marginTop="15dp">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_rooms_edit_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/property_room"
+                android:inputType="number"
+                android:textSize="@dimen/et_text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_address_edit_property"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,6 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/property_area"
+                android:inputType="number"
                 android:textSize="@dimen/et_text_size" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -109,6 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/property_price"
+                android:inputType="number"
                 android:textSize="@dimen/et_text_size" />
 
         </com.google.android.material.textfield.TextInputLayout>

@@ -10,6 +10,7 @@ data class Property(
     val createdBy: String = "",
     val image: String= "",
     val description: String= "",
+    val rooms: Long = 0,
     val address: String= "",
     val area: Long = 0,
     val price: Long = 0,
@@ -23,6 +24,7 @@ data class Property(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
+        parcel.readValue(Long::class.java.classLoader) as Long,
         parcel.readString()!!,
         parcel.readValue(Long::class.java.classLoader) as Long,
         parcel.readValue(Long::class.java.classLoader) as Long,
@@ -38,6 +40,7 @@ data class Property(
         parcel.writeString(createdBy)
         parcel.writeString(image)
         parcel.writeString(description)
+        parcel.writeLong(rooms)
         parcel.writeString(address)
         parcel.writeLong(area)
         parcel.writeLong(price)

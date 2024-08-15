@@ -99,6 +99,7 @@ class CreatePropertyActivity : BaseActivity() {
             if (mSelectedImageFileUri != null &&
                 findViewById<AppCompatEditText>(R.id.create_property_name).text.toString().isNotEmpty() &&
                 findViewById<AppCompatEditText>(R.id.create_property_description).text.toString().isNotEmpty() &&
+                findViewById<AppCompatEditText>(R.id.create_property_rooms).text.toString().isNotEmpty()&&
                 mAddress.isNotEmpty()&&
                 findViewById<AppCompatEditText>(R.id.create_property_area).text.toString().isNotEmpty()&&
                 findViewById<AppCompatEditText>(R.id.create_property_price).text.toString().isNotEmpty()){
@@ -111,6 +112,9 @@ class CreatePropertyActivity : BaseActivity() {
             }
             else if (findViewById<AppCompatEditText>(R.id.create_property_description).text.toString().isEmpty()){
                 showErrorSnackBar("Please enter a description")
+            }
+            else if (findViewById<AppCompatEditText>(R.id.create_property_rooms).text.toString().isEmpty()){
+                showErrorSnackBar("Please enter number of rooms")
             }
             else if (mAddress.isEmpty()){
                 showErrorSnackBar("Please input an address")
@@ -220,6 +224,7 @@ class CreatePropertyActivity : BaseActivity() {
     private fun registerProperty(){
         val name: String = findViewById<AppCompatEditText>(R.id.create_property_name).text.toString().trim{it<=' '}
         val description: String = findViewById<AppCompatEditText>(R.id.create_property_description).text.toString().trim{it<=' '}
+        val rooms: Long = findViewById<AppCompatEditText>(R.id.create_property_rooms).text.toString().trim{it<=' '}.toLong()
         val address: String = mAddress
         val area: Long = findViewById<AppCompatEditText>(R.id.create_property_area).text.toString().trim{it<=' '}.toLong()
         val price: Long = findViewById<AppCompatEditText>(R.id.create_property_price).text.toString().trim{it<=' '}.toLong()
@@ -230,6 +235,7 @@ class CreatePropertyActivity : BaseActivity() {
             createdBy = mUserName,
             image = mPropertyImageURL,
             description = description,
+            rooms = rooms,
             address = address,
             area = area,
             price = price,
