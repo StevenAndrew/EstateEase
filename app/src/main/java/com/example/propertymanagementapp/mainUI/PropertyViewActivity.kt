@@ -3,6 +3,10 @@ package com.example.propertymanagementapp.mainUI
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.RelativeSizeSpan
+import android.text.style.SuperscriptSpan
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -27,6 +31,7 @@ class PropertyViewActivity : BaseActivity() {
 
     lateinit var mPropertyDetails: Property
     lateinit var mPropertyOwnerDetails: User
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -130,8 +135,8 @@ class PropertyViewActivity : BaseActivity() {
         findViewById<TextView>(R.id.property_view_description).setText("Description: " +property.description)
         findViewById<TextView>(R.id.property_view_rooms).setText("Rooms: " + property.rooms.toString())
         findViewById<TextView>(R.id.property_view_address).setText("Address: " +property.address)
-        findViewById<TextView>(R.id.property_view_area).setText("Area in Meter2: " + property.area.toString())
-        findViewById<TextView>(R.id.property_view_price).setText("Price in Rupiah: " + property.price.toString())
+        findViewById<TextView>(R.id.property_view_area).setText("Area: " + property.area.toString() + Constants.meterSquare)
+        findViewById<TextView>(R.id.property_view_price).setText("Price: IDR " + property.price.toString())
     }
 
     //populate UI with user details
