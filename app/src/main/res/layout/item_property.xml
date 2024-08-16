@@ -39,6 +39,14 @@
                 tools:text="Property Name:"/>
 
             <TextView
+                android:id="@+id/tv_property_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondary_text_color"
+                android:textSize="@dimen/item_property_created_by_text_size"
+                />
+
+            <TextView
                 android:id="@+id/tv_property_created_by"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

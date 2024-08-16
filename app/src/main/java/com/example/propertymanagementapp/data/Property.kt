@@ -5,6 +5,7 @@ import android.os.Parcelable
 
 data class Property(
     var id: String= "",
+    var status: String= "",
     val userid: String = "",
     val name: String = "",
     val createdBy: String = "",
@@ -24,6 +25,7 @@ data class Property(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
+        parcel.readString()!!,
         parcel.readValue(Long::class.java.classLoader) as Long,
         parcel.readString()!!,
         parcel.readValue(Long::class.java.classLoader) as Long,
@@ -35,6 +37,7 @@ data class Property(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
+        parcel.writeString(status)
         parcel.writeString(userid)
         parcel.writeString(name)
         parcel.writeString(createdBy)

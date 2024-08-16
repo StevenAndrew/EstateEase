@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.AppCompatEditText
@@ -20,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.example.propertymanagementapp.LoginActivities.BaseActivity
 import com.example.propertymanagementapp.R
+import com.example.propertymanagementapp.R.*
 import com.example.propertymanagementapp.data.Property
 import com.example.propertymanagementapp.firebase.FirestoreClass
 import com.example.propertymanagementapp.utils.Constants
@@ -47,15 +49,15 @@ class CreatePropertyActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_create_property)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        setContentView(layout.activity_create_property)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
         if (!Places.isInitialized()){
-            Places.initialize(this, resources.getString(R.string.google_maps_api_key))
+            Places.initialize(this, resources.getString(string.google_maps_api_key))
         }
 
         setupActionBar()
@@ -64,7 +66,7 @@ class CreatePropertyActivity : BaseActivity() {
         }
 
         //open maps when entering address
-        findViewById<AppCompatEditText>(R.id.create_property_address).setOnClickListener{
+        findViewById<AppCompatEditText>(id.create_property_address).setOnClickListener{
             try {
                 val fields = listOf(
                     Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG,
@@ -78,7 +80,7 @@ class CreatePropertyActivity : BaseActivity() {
             }
         }
 
-        findViewById<AppCompatImageView>(R.id.create_property_place_image).setOnClickListener{
+        findViewById<AppCompatImageView>(id.create_property_place_image).setOnClickListener{
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                 //Show Image Chooser
@@ -95,34 +97,46 @@ class CreatePropertyActivity : BaseActivity() {
             }
         }
 
-        findViewById<Button>(R.id.btn_create_property).setOnClickListener{
+        findViewById<Button>(id.btn_create_sell).setOnClickListener {
+            findViewById<TextView>(id.create_property_status).setText("Sell")
+        }
+
+        findViewById<Button>(id.btn_create_rent).setOnClickListener {
+            findViewById<TextView>(id.create_property_status).setText("Rent")
+        }
+
+        findViewById<Button>(id.btn_create_property).setOnClickListener{
             if (mSelectedImageFileUri != null &&
-                findViewById<AppCompatEditText>(R.id.create_property_name).text.toString().isNotEmpty() &&
-                findViewById<AppCompatEditText>(R.id.create_property_description).text.toString().isNotEmpty() &&
-                findViewById<AppCompatEditText>(R.id.create_property_rooms).text.toString().isNotEmpty()&&
+                findViewById<TextView>(id.create_property_status).text.toString().isNotEmpty() &&
+                findViewById<AppCompatEditText>(id.create_property_name).text.toString().isNotEmpty() &&
+                findViewById<AppCompatEditText>(id.create_property_description).text.toString().isNotEmpty() &&
+                findViewById<AppCompatEditText>(id.create_property_rooms).text.toString().isNotEmpty()&&
                 mAddress.isNotEmpty()&&
-                findViewById<AppCompatEditText>(R.id.create_property_area).text.toString().isNotEmpty()&&
-                findViewById<AppCompatEditText>(R.id.create_property_price).text.toString().isNotEmpty()){
+                findViewById<AppCompatEditText>(id.create_property_area).text.toString().isNotEmpty()&&
+                findViewById<AppCompatEditText>(id.create_property_price).text.toString().isNotEmpty()){
                 uploadPropertyImage()
             }else if (mSelectedImageFileUri == null){
                 showErrorSnackBar("Please input an image")
             }
-            else if (findViewById<AppCompatEditText>(R.id.create_property_name).text.toString().isEmpty()){
+            else if (findViewById<TextView>(id.create_property_status).text.toString().isEmpty()){
+                showErrorSnackBar("Please choose a status")
+            }
+            else if (findViewById<AppCompatEditText>(id.create_property_name).text.toString().isEmpty()){
                 showErrorSnackBar("Please enter a name")
             }
-            else if (findViewById<AppCompatEditText>(R.id.create_property_description).text.toString().isEmpty()){
+            else if (findViewById<AppCompatEditText>(id.create_property_description).text.toString().isEmpty()){
                 showErrorSnackBar("Please enter a description")
             }
-            else if (findViewById<AppCompatEditText>(R.id.create_property_rooms).text.toString().isEmpty()){
+            else if (findViewById<AppCompatEditText>(id.create_property_rooms).text.toString().isEmpty()){
                 showErrorSnackBar("Please enter number of rooms")
             }
             else if (mAddress.isEmpty()){
                 showErrorSnackBar("Please input an address")
             }
-            else if (findViewById<AppCompatEditText>(R.id.create_property_area).text.toString().isEmpty()){
+            else if (findViewById<AppCompatEditText>(id.create_property_area).text.toString().isEmpty()){
                 showErrorSnackBar("Please enter property area")
             }
-            else if (findViewById<AppCompatEditText>(R.id.create_property_price).text.toString().isEmpty()){
+            else if (findViewById<AppCompatEditText>(id.create_property_price).text.toString().isEmpty()){
                 showErrorSnackBar("Please enter property price")
             }
         }
@@ -167,16 +181,16 @@ class CreatePropertyActivity : BaseActivity() {
     }
 
     private fun setupActionBar() {
-        setSupportActionBar(findViewById(R.id.toolbar_create_property_activity))
+        setSupportActionBar(findViewById(id.toolbar_create_property_activity))
 
         val actionBar = supportActionBar
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(R.drawable.baseline_white_arrow_back_24)
-            actionBar.title = resources.getString(R.string.add_property_title)
+            actionBar.setHomeAsUpIndicator(drawable.baseline_white_arrow_back_24)
+            actionBar.title = resources.getString(string.add_property_title)
         }
-        findViewById<Toolbar>(R.id.toolbar_create_property_activity).setNavigationOnClickListener { onBackPressed() }
+        findViewById<Toolbar>(id.toolbar_create_property_activity).setNavigationOnClickListener { onBackPressed() }
     }
 
     override fun onRequestPermissionsResult(
@@ -206,8 +220,8 @@ class CreatePropertyActivity : BaseActivity() {
                     .with(this)
                     .load(mSelectedImageFileUri)
                     .centerCrop()
-                    .placeholder(R.drawable.add_screen_image_placeholder)
-                    .into(findViewById<AppCompatImageView>(R.id.create_property_place_image))
+                    .placeholder(drawable.add_screen_image_placeholder)
+                    .into(findViewById<AppCompatImageView>(id.create_property_place_image))
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -216,21 +230,23 @@ class CreatePropertyActivity : BaseActivity() {
             mAddress = place.address!!
             mLatitude = place.latLng!!.latitude
             mLongitude = place.latLng!!.longitude
-            findViewById<AppCompatEditText>(R.id.create_property_address).setText(mAddress)
+            findViewById<AppCompatEditText>(id.create_property_address).setText(mAddress)
         }
     }
 
     //register property on firestore database
     private fun registerProperty(){
-        val name: String = findViewById<AppCompatEditText>(R.id.create_property_name).text.toString().trim{it<=' '}
-        val description: String = findViewById<AppCompatEditText>(R.id.create_property_description).text.toString().trim{it<=' '}
-        val rooms: Long = findViewById<AppCompatEditText>(R.id.create_property_rooms).text.toString().trim{it<=' '}.toLong()
+        val status: String = findViewById<TextView>(id.create_property_status).text.toString().trim{it<=' '}
+        val name: String = findViewById<AppCompatEditText>(id.create_property_name).text.toString().trim{it<=' '}
+        val description: String = findViewById<AppCompatEditText>(id.create_property_description).text.toString().trim{it<=' '}
+        val rooms: Long = findViewById<AppCompatEditText>(id.create_property_rooms).text.toString().trim{it<=' '}.toLong()
         val address: String = mAddress
-        val area: Long = findViewById<AppCompatEditText>(R.id.create_property_area).text.toString().trim{it<=' '}.toLong()
-        val price: Long = findViewById<AppCompatEditText>(R.id.create_property_price).text.toString().trim{it<=' '}.toLong()
+        val area: Long = findViewById<AppCompatEditText>(id.create_property_area).text.toString().trim{it<=' '}.toLong()
+        val price: Long = findViewById<AppCompatEditText>(id.create_property_price).text.toString().trim{it<=' '}.toLong()
 
         val property = Property(
             userid = getCurrentUserID(),
+            status = status,
             name = name,
             createdBy = mUserName,
             image = mPropertyImageURL,

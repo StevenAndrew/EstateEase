@@ -35,6 +35,12 @@ open class PropertyItemsAdapter(private val context: Context,
                 .into(holder.itemView.findViewById<AppCompatImageView>(R.id.item_property_image))
 
             holder.itemView.findViewById<TextView>(R.id.tv_property_name).text = model.name
+            if (model.status.equals("Rent")){
+                holder.itemView.findViewById<TextView>(R.id.tv_property_status).text = "${model.status}: IDR ${model.price}/mo"
+            }else{
+                holder.itemView.findViewById<TextView>(R.id.tv_property_status).text = "${model.status}: IDR ${model.price}"
+            }
+
             holder.itemView.findViewById<TextView>(R.id.tv_property_created_by).text = "Created by: ${model.createdBy}"
 
             holder.itemView.setOnClickListener {

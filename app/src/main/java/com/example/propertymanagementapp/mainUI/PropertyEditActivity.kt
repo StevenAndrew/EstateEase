@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.AppCompatEditText
@@ -98,6 +99,14 @@ class PropertyEditActivity : BaseActivity() {
             }
         }
 
+        findViewById<Button>(R.id.btn_edit_sell).setOnClickListener {
+            findViewById<TextView>(R.id.edit_property_status).setText("Sell")
+        }
+
+        findViewById<Button>(R.id.btn_edit_rent).setOnClickListener {
+            findViewById<TextView>(R.id.edit_property_status).setText("Rent")
+        }
+
         findViewById<Button>(R.id.btn_update_property).setOnClickListener{
             if (mSelectedImageFileUri != null){
                 showProgressDialog()
@@ -132,6 +141,7 @@ class PropertyEditActivity : BaseActivity() {
             .centerCrop()
             .placeholder(R.drawable.add_screen_image_placeholder)
             .into(findViewById<ImageView>(R.id.iv_property_details_image))
+        findViewById<TextView>(R.id.edit_property_status).setText(property.status)
         findViewById<AppCompatEditText>(R.id.et_name_edit_property).setText(property.name)
         findViewById<AppCompatEditText>(R.id.et_description_edit_property).setText(property.description)
         findViewById<AppCompatEditText>(R.id.et_rooms_edit_property).setText(property.rooms.toString())
@@ -186,6 +196,10 @@ class PropertyEditActivity : BaseActivity() {
 
         if (mPropertyImageURL.isNotEmpty() && mPropertyImageURL != mPropertyDetails.image){
             propertyHashMap["image"] = mPropertyImageURL
+        }
+
+        if (findViewById<TextView>(R.id.edit_property_status).text.toString() != mPropertyDetails.status){
+            propertyHashMap["status"] = findViewById<TextView>(R.id.edit_property_status).text.toString()
         }
 
         if (findViewById<AppCompatEditText>(R.id.et_name_edit_property).text.toString() != mPropertyDetails.name){

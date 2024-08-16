@@ -29,6 +29,7 @@
 
     <string name="mobile">Mobile</string>
     <string name="update">UPDATE</string>
+    <string name="status">Status</string>
     <string name="my_profile_title">My Profile</string>
 
     <string name="FAB">Floating Action Button to add property</string>
@@ -54,6 +55,9 @@
     <string name="open_in_maps">Open In Maps</string>
     <string name="owner_mobile">Owner Mobile Phone Number</string>
     <string name="owner_email">Owner Email</string>
+
+    <string name="sell">Sell</string>
+    <string name="rent">Rent</string>
 
     <string name="property_info">Property Info</string>
     <string name="edit_property">Edit Property</string>
