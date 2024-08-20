@@ -1,14 +1,19 @@
 package com.example.propertymanagementapp.mainUI
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,6 +54,79 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             val intent = Intent(this, CreatePropertyActivity::class.java)
             intent.putExtra(Constants.NAME, mUserName)
             startActivityForResult(intent, UPDATE_PROPERTYLIST_REQUEST_CODE)
+        }
+
+        findViewById<FloatingActionButton>(R.id.fab_filter_property).setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.filter_dialog)
+            dialog.show()
+
+            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener{
+                dialog.dismiss()
+            }
+
+            dialog.findViewById<Button>(R.id.btn_filter_sell).setOnClickListener {
+                dialog.findViewById<TextView>(R.id.filter_property_status).setText("Sell")
+            }
+
+            dialog.findViewById<Button>(R.id.btn_filter_rent).setOnClickListener {
+                dialog.findViewById<TextView>(R.id.filter_property_status).setText("Rent")
+            }
+
+            dialog.findViewById<Button>(R.id.btn_filter).setOnClickListener{
+                val status: String = dialog.findViewById<TextView>(R.id.filter_property_status).text.toString().trim{it<=' '}
+                val minRooms = dialog.findViewById<AppCompatEditText>(R.id.input_filter_property_rooms1)
+                val minArea = dialog.findViewById<AppCompatEditText>(R.id.input_filter_property_area1)
+                val minPrice = dialog.findViewById<AppCompatEditText>(R.id.input_filter_property_price1)
+                val maxRooms = dialog.findViewById<AppCompatEditText>(R.id.input_filter_property_rooms2)
+                val maxArea = dialog.findViewById<AppCompatEditText>(R.id.input_filter_property_area2)
+                val maxPrice = dialog.findViewById<AppCompatEditText>(R.id.input_filter_property_price2)
+
+                var minRoomsVal: Long = -1
+                var maxRoomsVal: Long = -1
+                var minAreaVal: Long = -1
+                var maxAreaVal: Long = -1
+                var minPriceVal: Long = -1
+                var maxPriceVal: Long = -1
+
+                if (minRooms.text.toString().isNotEmpty()){
+                    minRoomsVal = minRooms.text.toString().trim{it<=' '}.toLong()
+                }
+                if (maxRooms.text.toString().isNotEmpty()){
+                    maxRoomsVal = maxRooms.text.toString().trim{it<=' '}.toLong()
+                }
+                if (minArea.text.toString().isNotEmpty()){
+                    minAreaVal = minArea.text.toString().trim{it<=' '}.toLong()
+                }
+                if (maxArea.text.toString().isNotEmpty()){
+                    maxAreaVal = maxArea.text.toString().trim{it<=' '}.toLong()
+                }
+                if (minPrice.text.toString().isNotEmpty()){
+                    minPriceVal = minPrice.text.toString().trim{it<=' '}.toLong()
+                }
+                if (maxPrice.text.toString().isNotEmpty()){
+                    maxPriceVal = maxPrice.text.toString().trim{it<=' '}.toLong()
+                }
+
+                if (status != "Sell"  && status != "Rent"     //all is empty
+                    && minRooms.text.toString().isEmpty()
+                    && maxRooms.text.toString().isEmpty()
+                    && minArea.text.toString().isEmpty()
+                    && maxArea.text.toString().isEmpty()
+                    && minPrice.text.toString().isEmpty()
+                    && maxPrice.text.toString().isEmpty()) {
+                    FirestoreClass().getAllPropertyList(this)
+                    dialog.dismiss()
+                }
+                else {
+
+                    FirestoreClass().filterPropertyList(this, status, minRoomsVal, maxRoomsVal, minAreaVal, maxAreaVal, minPriceVal, maxPriceVal)
+                    dialog.dismiss()
+                }
+            }
         }
     }
 

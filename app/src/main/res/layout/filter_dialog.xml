@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/filter"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/baseline_close_24"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="2dp"
+            android:layout_alignParentRight="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txttite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Filter Properties"
+                android:textColor="@color/quantum_black_100"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/filter_property_rooms"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Rooms:"
+                    android:textSize="@dimen/et_text_size"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_filter_property_rooms1"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="@dimen/et_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="@dimen/nav_divider_height"
+                    android:background="@color/white" />
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="-"
+                    android:textSize="@dimen/et_text_size"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="@dimen/nav_divider_height"
+                    android:background="@color/white" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_filter_property_rooms2"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="@dimen/et_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/filter_property_area"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Area:"
+                    android:textSize="@dimen/et_text_size"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_filter_property_area1"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="@dimen/et_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="@dimen/nav_divider_height"
+                    android:background="@color/white" />
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="-"
+                    android:textSize="@dimen/et_text_size"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="@dimen/nav_divider_height"
+                    android:background="@color/white" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_filter_property_area2"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="@dimen/et_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/filter_property_price"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Price:"
+                    android:textSize="@dimen/et_text_size"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_filter_property_price1"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="@dimen/et_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="@dimen/nav_divider_height"
+                    android:background="@color/white" />
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="-"
+                    android:textSize="@dimen/et_text_size"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="@dimen/nav_divider_height"
+                    android:background="@color/white" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_filter_property_price2"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="@dimen/et_text_size" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/filter_property_status"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/status"
+                    android:textSize="@dimen/et_text_size"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp"
+                    android:background="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_filter_sell"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/delete_button_rounded"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingTop="@dimen/btn_paddingTopBottom"
+                    android:paddingBottom="@dimen/btn_paddingTopBottom"
+                    android:gravity="center"
+                    android:text="@string/sell"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/btn_text_size" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="@dimen/nav_divider_height"
+                    android:background="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_filter_rent"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edit_button_rounded"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingTop="@dimen/btn_paddingTopBottom"
+                    android:paddingBottom="@dimen/btn_paddingTopBottom"
+                    android:gravity="center"
+                    android:text="@string/rent"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/btn_text_size" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/quantum_lightblue200"
+                    android:text="Filter"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

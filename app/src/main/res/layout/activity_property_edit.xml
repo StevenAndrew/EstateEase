@@ -50,7 +50,7 @@
                 android:id="@+id/edit_property_status"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="16dp"
                 android:hint="@string/status"
                 android:textSize="@dimen/et_text_size"/>
 
