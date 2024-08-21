@@ -57,7 +57,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
         findViewById<FloatingActionButton>(R.id.fab_filter_property).setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
             val dialog = Dialog(this)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setCancelable(false)
@@ -92,25 +91,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 var minPriceVal: Long = -1
                 var maxPriceVal: Long = -1
 
-                if (minRooms.text.toString().isNotEmpty()){
-                    minRoomsVal = minRooms.text.toString().trim{it<=' '}.toLong()
-                }
-                if (maxRooms.text.toString().isNotEmpty()){
-                    maxRoomsVal = maxRooms.text.toString().trim{it<=' '}.toLong()
-                }
-                if (minArea.text.toString().isNotEmpty()){
-                    minAreaVal = minArea.text.toString().trim{it<=' '}.toLong()
-                }
-                if (maxArea.text.toString().isNotEmpty()){
-                    maxAreaVal = maxArea.text.toString().trim{it<=' '}.toLong()
-                }
-                if (minPrice.text.toString().isNotEmpty()){
-                    minPriceVal = minPrice.text.toString().trim{it<=' '}.toLong()
-                }
-                if (maxPrice.text.toString().isNotEmpty()){
-                    maxPriceVal = maxPrice.text.toString().trim{it<=' '}.toLong()
-                }
-
                 if (status != "Sell"  && status != "Rent"     //all is empty
                     && minRooms.text.toString().isEmpty()
                     && maxRooms.text.toString().isEmpty()
@@ -122,6 +102,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     dialog.dismiss()
                 }
                 else {
+                    if (minRooms.text.toString().isNotEmpty()){
+                        minRoomsVal = minRooms.text.toString().trim{it<=' '}.toLong()
+                    }
+                    if (maxRooms.text.toString().isNotEmpty()){
+                        maxRoomsVal = maxRooms.text.toString().trim{it<=' '}.toLong()
+                    }
+                    if (minArea.text.toString().isNotEmpty()){
+                        minAreaVal = minArea.text.toString().trim{it<=' '}.toLong()
+                    }
+                    if (maxArea.text.toString().isNotEmpty()){
+                        maxAreaVal = maxArea.text.toString().trim{it<=' '}.toLong()
+                    }
+                    if (minPrice.text.toString().isNotEmpty()){
+                        minPriceVal = minPrice.text.toString().trim{it<=' '}.toLong()
+                    }
+                    if (maxPrice.text.toString().isNotEmpty()){
+                        maxPriceVal = maxPrice.text.toString().trim{it<=' '}.toLong()
+                    }
 
                     FirestoreClass().filterPropertyList(this, status, minRoomsVal, maxRoomsVal, minAreaVal, maxAreaVal, minPriceVal, maxPriceVal)
                     dialog.dismiss()

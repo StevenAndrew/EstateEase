@@ -19,7 +19,10 @@ import com.example.propertymanagementapp.mainUI.PropertyViewActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
+import java.lang.StringBuilder
+
 
 class FirestoreClass {
 
@@ -223,34 +226,31 @@ class FirestoreClass {
             }
     }
 
-    fun filterStatusOnlyPropertyList(activity: MainActivity, status: String){
-        mFireStore.collection("Property")
-            .whereEqualTo("status", status)
-            .get()
-            .addOnSuccessListener {
-                    document->
-                Log.i(activity.javaClass.simpleName, document.documents.toString())
-                val propertyList: ArrayList<Property> = ArrayList()
-                for (i in document.documents){
-                    val property = i.toObject(Property::class.java)!!
-                    property.id = i.id
-                    propertyList.add(property)
-                }
-
-                activity.populateBoardsListToUI(propertyList)
-            }.addOnFailureListener {
-                activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error getting the property list", it)
-            }
-    }
-
     fun filterPropertyList(activity: MainActivity, status: String, minRooms: Long, maxRooms: Long, minArea: Long, maxArea: Long, minPrice: Long, maxPrice: Long){
-        val firestoreCollection= mFireStore.collection("Property")
-        if (status == "Sell"  || status == "Rent"){
-            firestoreCollection.whereEqualTo("status", status).get()
-        }else{
-            firestoreCollection.whereEqualTo("status", status).get()
+        val firestore = mFireStore.collection("Property")
+        var query : Query = firestore
+        if (status.equals("Sell") || status.equals("Rent")){
+            query = query.whereEqualTo("status",status)
         }
+        if (minRooms.toInt() != -1){
+            query = query.whereGreaterThanOrEqualTo("rooms",minRooms)
+        }
+        if (maxRooms.toInt() != -1){
+            query = query.whereLessThanOrEqualTo("rooms",maxRooms)
+        }
+        if (minArea.toInt() != -1){
+            query = query.whereGreaterThanOrEqualTo("area",minArea)
+        }
+        if (maxArea.toInt() != -1){
+            query = query.whereLessThanOrEqualTo("area",maxArea)
+        }
+        if (minPrice.toInt() != -1){
+            query = query.whereGreaterThanOrEqualTo("price",minPrice)
+        }
+        if (maxPrice.toInt() != -1){
+            query = query.whereLessThanOrEqualTo("price",maxPrice)
+        }
+            query.get()
             .addOnSuccessListener {
                     document->
                 Log.i(activity.javaClass.simpleName, document.documents.toString())
