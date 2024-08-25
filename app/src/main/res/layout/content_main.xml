@@ -11,6 +11,41 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".mainUI.MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/text_search_property"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Search Property"
+            android:drawableStart="@drawable/baseline_search_24"
+            android:autofillHints="Search Property"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:inputType="text">
+        </EditText>
+
+        <Button
+            android:id="@+id/fab_search_property"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/baseline_search_24"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingTop="@dimen/btn_paddingTopBottom"
+            android:paddingBottom="@dimen/btn_paddingTopBottom"
+            android:gravity="center"
+            app:srcCompat= "@drawable/baseline_search_24"/>
+
+    </LinearLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
