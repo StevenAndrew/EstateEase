@@ -9,8 +9,10 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.AppCompatEditText
@@ -124,6 +126,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     FirestoreClass().filterPropertyList(this, status, minRoomsVal, maxRoomsVal, minAreaVal, maxAreaVal, minPriceVal, maxPriceVal)
                     dialog.dismiss()
                 }
+            }
+        }
+
+        findViewById<Button>(R.id.fab_search_property).setOnClickListener {
+            if (findViewById<EditText>(R.id.text_search_property).text.isEmpty()){
+                FirestoreClass().getAllPropertyList(this)
+            }else{
+//                Toast.makeText(this, findViewById<EditText>(R.id.text_search_property).text.toString(), Toast.LENGTH_SHORT).show()
+                FirestoreClass().searchPropertyList(this,findViewById<EditText>(R.id.text_search_property).text.toString())
             }
         }
     }

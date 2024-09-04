@@ -1,7 +1,6 @@
 package com.example.propertymanagementapp.firebase
 
 import android.app.Activity
-import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -17,11 +16,9 @@ import com.example.propertymanagementapp.mainUI.MyProfileActivity
 import com.example.propertymanagementapp.mainUI.PropertyEditActivity
 import com.example.propertymanagementapp.mainUI.PropertyViewActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
-import java.lang.StringBuilder
 
 
 class FirestoreClass {
@@ -251,6 +248,28 @@ class FirestoreClass {
             query = query.whereLessThanOrEqualTo("price",maxPrice)
         }
             query.get()
+            .addOnSuccessListener {
+                    document->
+                Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val propertyList: ArrayList<Property> = ArrayList()
+                for (i in document.documents){
+                    val property = i.toObject(Property::class.java)!!
+                    property.id = i.id
+                    propertyList.add(property)
+                }
+                activity.populateBoardsListToUI(propertyList)
+            }.addOnFailureListener {
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error getting the property list", it)
+            }
+    }
+
+    fun searchPropertyList(activity: MainActivity, name: String){
+        var query : Query = mFireStore.collection("Property")
+        query = query.whereGreaterThanOrEqualTo("name", name.capitalize())
+        query = query.whereLessThan("name", name.capitalize() + "z")
+
+        query.get()
             .addOnSuccessListener {
                     document->
                 Log.i(activity.javaClass.simpleName, document.documents.toString())
