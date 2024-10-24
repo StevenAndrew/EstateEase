@@ -133,7 +133,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             if (findViewById<EditText>(R.id.text_search_property).text.isEmpty()){
                 FirestoreClass().getAllPropertyList(this)
             }else{
-//                Toast.makeText(this, findViewById<EditText>(R.id.text_search_property).text.toString(), Toast.LENGTH_SHORT).show()
                 FirestoreClass().searchPropertyList(this,findViewById<EditText>(R.id.text_search_property).text.toString())
             }
         }
