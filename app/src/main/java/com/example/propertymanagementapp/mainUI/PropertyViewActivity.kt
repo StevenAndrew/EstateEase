@@ -71,6 +71,11 @@ class PropertyViewActivity : BaseActivity() {
             FirestoreClass().deletePropertyData(this, propertyId)
         }
 
+        findViewById<Button>(R.id.btn_meeting).setOnClickListener{
+            //delete toast, write code for intent here
+            Toast.makeText(this, "Meeting", Toast.LENGTH_SHORT).show()
+        }
+
         findViewById<ImageView>(R.id.iv_property_details_image).setOnClickListener{
             findViewById<ImageView>(R.id.iv_property_details_zoom_image).visibility = View.VISIBLE
             findViewById<Button>(R.id.btn_zoom_out_property).visibility = View.VISIBLE

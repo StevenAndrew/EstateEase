@@ -148,6 +148,22 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/btn_text_size" />
 
+        <Button
+            android:id="@+id/btn_meeting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/my_profile_btn_update_marginTop"
+            android:background="@drawable/edit_button_rounded"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="@dimen/btn_paddingTopBottom"
+            android:paddingBottom="@dimen/btn_paddingTopBottom"
+            android:text="@string/meeting"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/btn_text_size"
+            android:visibility="gone"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -167,7 +183,7 @@
                 android:text="@string/edit_property"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/btn_text_size"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="30dp"
@@ -188,7 +204,7 @@
                 android:text="@string/delete_property"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/btn_text_size"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
         </LinearLayout>
 

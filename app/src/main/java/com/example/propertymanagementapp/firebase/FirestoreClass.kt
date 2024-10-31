@@ -175,9 +175,11 @@ class FirestoreClass {
                         if(propertyInfo.userid == getCurrentUserID()){
                             activity.findViewById<Button>(R.id.btn_edit_property).visibility = View.VISIBLE
                             activity.findViewById<Button>(R.id.btn_delete_property).visibility = View.VISIBLE
+                            activity.findViewById<Button>(R.id.btn_meeting).visibility = View.GONE
                         }else{
-                            activity.findViewById<Button>(R.id.btn_edit_property).visibility = View.INVISIBLE
-                            activity.findViewById<Button>(R.id.btn_delete_property).visibility = View.INVISIBLE
+                            activity.findViewById<Button>(R.id.btn_edit_property).visibility = View.GONE
+                            activity.findViewById<Button>(R.id.btn_delete_property).visibility = View.GONE
+                            activity.findViewById<Button>(R.id.btn_meeting).visibility = View.VISIBLE
                         }
                     }
                 }

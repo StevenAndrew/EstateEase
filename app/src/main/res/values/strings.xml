@@ -65,4 +65,6 @@
     <string name="update_property">Update Property</string>
     <string name="zoom_out">Zoom Out</string>
 
+    <string name="meeting">Set Meeting</string>
+
 </resources>
