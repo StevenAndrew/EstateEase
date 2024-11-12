@@ -72,8 +72,9 @@ class PropertyViewActivity : BaseActivity() {
         }
 
         findViewById<Button>(R.id.btn_meeting).setOnClickListener{
-            //delete toast, write code for intent here
-            Toast.makeText(this, "Meeting", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, CreateMeetingActivity::class.java)
+            intent.putExtra("id", propertyId)
+            startActivity(intent)
         }
 
         findViewById<ImageView>(R.id.iv_property_details_image).setOnClickListener{

@@ -41,7 +41,7 @@ open class PropertyItemsAdapter(private val context: Context,
                 holder.itemView.findViewById<TextView>(R.id.tv_property_status).text = "${model.status}: IDR ${model.price}"
             }
 
-            holder.itemView.findViewById<TextView>(R.id.tv_property_created_by).text = "Created by: ${model.createdBy}"
+            holder.itemView.findViewById<TextView>(R.id.tv_property_created_by).text = "Owner: ${model.createdBy}"
 
             holder.itemView.setOnClickListener {
                 if (onClickListener!=null){

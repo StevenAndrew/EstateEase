@@ -10,6 +10,7 @@ import com.example.propertymanagementapp.LoginActivities.SignUpActivity
 import com.example.propertymanagementapp.R
 import com.example.propertymanagementapp.data.Property
 import com.example.propertymanagementapp.data.User
+import com.example.propertymanagementapp.mainUI.CreateMeetingActivity
 import com.example.propertymanagementapp.mainUI.CreatePropertyActivity
 import com.example.propertymanagementapp.mainUI.MainActivity
 import com.example.propertymanagementapp.mainUI.MyProfileActivity
@@ -149,6 +150,10 @@ class FirestoreClass {
                     is PropertyEditActivity ->{
                         activity.updatePropertyDetails(document.toObject(Property::class.java)!!)
                     }
+                    is CreateMeetingActivity -> {
+                        activity.propertyImage(document.toObject(Property::class.java)!!)
+                        loadUserDataInProperty(activity, document.toObject(Property::class.java)!!)
+                    }
                 }
             }.addOnFailureListener{
                 when (activity){
@@ -181,6 +186,9 @@ class FirestoreClass {
                             activity.findViewById<Button>(R.id.btn_delete_property).visibility = View.GONE
                             activity.findViewById<Button>(R.id.btn_meeting).visibility = View.VISIBLE
                         }
+                    }
+                    is CreateMeetingActivity -> {
+                        activity.userDetailsFromProperty(document.toObject(User::class.java)!!)
                     }
                 }
 

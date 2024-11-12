@@ -35,6 +35,7 @@
     <string name="FAB">Floating Action Button to add property</string>
 
     <string name="add_property_title">Add Property</string>
+    <string name="create_meeting_title">Arrange Meeting</string>
     <string name="edit_text_hint_title">Title</string>
     <string name="edit_text_hint_description">Description</string>
     <string name="edit_text_hint_date">Date</string>

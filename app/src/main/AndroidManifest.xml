@@ -29,6 +29,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
+            android:name=".mainUI.CreateMeetingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
             android:name=".mainUI.PropertyViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"

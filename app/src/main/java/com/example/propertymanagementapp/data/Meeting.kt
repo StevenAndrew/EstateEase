@@ -9,6 +9,7 @@ data class Meeting(
     var status: String= "",
     val userid: String = "",
     val ownerid: String = "",
+    val propertyid: String = "",
     var location: String= "",
     val latitude: Double= 0.0,
     val longitude: Double= 0.0,
@@ -20,6 +21,7 @@ data class Meeting(
 
 ): Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -41,6 +43,7 @@ data class Meeting(
         parcel.writeString(status)
         parcel.writeString(userid)
         parcel.writeString(ownerid)
+        parcel.writeString(propertyid)
         parcel.writeString(location)
         parcel.writeDouble(latitude)
         parcel.writeDouble(longitude)
