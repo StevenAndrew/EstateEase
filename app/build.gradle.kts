@@ -66,6 +66,7 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.google.firebase:firebase-storage:21.0.0")
     implementation("com.google.android.libraries.places:places:3.5.0")
+    implementation ("com.google.android.gms:play-services-auth:19.2.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

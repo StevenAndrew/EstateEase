@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.example.propertymanagementapp.LoginActivities.SignInActivity
 import com.example.propertymanagementapp.LoginActivities.SignUpActivity
 import com.example.propertymanagementapp.R
+import com.example.propertymanagementapp.data.Meeting
 import com.example.propertymanagementapp.data.Property
 import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.mainUI.CreateMeetingActivity
@@ -293,6 +294,23 @@ class FirestoreClass {
             }.addOnFailureListener {
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error getting the property list", it)
+            }
+    }
+
+    //Meeting Database
+
+    fun createMeeting(activity: CreateMeetingActivity, meetingInfo : Meeting){    //register meeting into the Firestore database
+        mFireStore.collection("Meeting")  //Meeting is the name of database
+            .document()
+            .set(meetingInfo, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "Meeting added successfully")
+                Toast.makeText(activity,"Meeting added successfully", Toast.LENGTH_SHORT).show()
+                activity.meetingCreatedSuccessfully()
+            }.addOnFailureListener{
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error adding meeting", it)
+                Toast.makeText(activity,"Meeting added successfully", Toast.LENGTH_SHORT).show()
             }
     }
 }

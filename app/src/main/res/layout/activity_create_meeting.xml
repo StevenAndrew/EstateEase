@@ -111,37 +111,59 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <TextView
                         android:id="@+id/create_meeting_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="6dp"
-                        android:hint="Meeting Date &amp; Time"
+                        android:hint="Meeting Date"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:inputType="datetime"
                         android:textSize="@dimen/et_text_size" />
 
-                    <DatePicker
-                        android:id="@+id/datePicker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:datePickerMode="calendar"
-                        android:visibility="gone"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    <TimePicker
-                        android:id="@+id/timePicker1"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        android:id="@+id/create_meeting_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:timePickerMode="spinner"
-                        android:visibility="gone"/>
+                        android:paddingLeft="6dp"
+                        android:hint="Meeting Time"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="datetime"
+                        android:textSize="@dimen/et_text_size" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/intro_background"
+                android:orientation="horizontal"
+                android:paddingTop="8dp"
+                >
+
                 <Button
-                    android:id="@+id/btn_create_meeting"
+                    android:id="@+id/btn_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SELECT DATE" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SELECT TIME"
+                    android:id="@+id/btn_time" />
+            </LinearLayout>
+                <Button
+                    android:id="@+id/btn_set_same_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -151,9 +173,25 @@
                     android:gravity="center"
                     android:paddingTop="@dimen/btn_paddingTopBottom"
                     android:paddingBottom="@dimen/btn_paddingTopBottom"
+                    android:text="Set Location on Property"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/btn_text_size" />
+
+                <Button
+                    android:id="@+id/btn_create_meeting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/create_board_btn_marginTop"
+                    android:background="@drawable/edit_button_rounded"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/btn_paddingTopBottom"
+                    android:paddingBottom="@dimen/btn_paddingTopBottom"
                     android:text="Create Meeting"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/btn_text_size" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

@@ -1,22 +1,16 @@
 package com.example.propertymanagementapp.mainUI
 
-import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
@@ -32,9 +26,9 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class CreateMeetingActivity : BaseActivity() {
 
@@ -44,12 +38,18 @@ class CreateMeetingActivity : BaseActivity() {
 
     private lateinit var mPropertyDetails: Property
     lateinit var mPropertyOwnerDetails: User
-    private lateinit var mUserName: String
-    private var mPropertyImageURL: String = ""
     var propertyIdMeet = ""
     private var mAddress: String = ""
     private var mLatitude: Double = 0.0
     private var mLongitude: Double = 0.0
+
+    private val calendar = Calendar.getInstance()
+
+    private var mDate: Long = 0;
+    private var mMonth: Long = 0;
+    private var mYear: Long = 0;
+    private var mHour: Long = 0;
+    private var mMinute: Long = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,16 +89,68 @@ class CreateMeetingActivity : BaseActivity() {
 
         findViewById<Button>(id.btn_create_meeting).setOnClickListener{
             if (mAddress.isNotEmpty()&&
-                findViewById<AppCompatEditText>(id.create_meeting_date).text.toString().isNotEmpty()){
-//                registerMeeting()
+                findViewById<TextView>(id.create_meeting_date).text.toString().isNotEmpty()&&
+                findViewById<TextView>(id.create_meeting_time).text.toString().isNotEmpty()){
+                registerMeeting()
             }
             else if (mAddress.isEmpty()){
                 showErrorSnackBar("Please enter meeting location")
-            }
-            else if (findViewById<AppCompatEditText>(id.create_meeting_date).text.toString().isEmpty()){
+            }else if (findViewById<AppCompatEditText>(id.create_meeting_date).text.toString().isEmpty()){
+                showErrorSnackBar("Please enter meeting date")
+            }else if (findViewById<AppCompatEditText>(id.create_meeting_time).text.toString().isEmpty()){
                 showErrorSnackBar("Please enter meeting time")
             }
         }
+
+        findViewById<Button>(id.btn_date).setOnClickListener{
+            showDatePicker()
+        }
+
+        findViewById<Button>(id.btn_time).setOnClickListener{
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                calendar.set(Calendar.HOUR_OF_DAY, hour)
+                calendar.set(Calendar.MINUTE, minute)
+                mHour = calendar.get(Calendar.HOUR_OF_DAY).toLong()
+                mMinute = calendar.get(Calendar.MINUTE).toLong()
+                val time = SimpleDateFormat("HH:mm").format(calendar.time)
+                findViewById<TextView>(id.create_meeting_time).text = "Selected Time: $time"
+            }
+
+            TimePickerDialog(this, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+        }
+
+        findViewById<Button>(id.btn_set_same_location).setOnClickListener{
+            mAddress = mPropertyDetails.address
+            mLatitude = mPropertyDetails.latitude
+            mLongitude = mPropertyDetails.longitude
+            findViewById<AppCompatEditText>(id.create_meeting_location).setText(mAddress)
+        }
+    }
+
+    private fun showDatePicker() {
+        // Create a DatePickerDialog
+        val datePickerDialog = DatePickerDialog(
+            this, {DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                // Create a new Calendar instance to hold the selected date
+                val selectedDate = Calendar.getInstance()
+                // Set the selected date using the values received from the DatePicker dialog
+                selectedDate.set(year, monthOfYear, dayOfMonth)
+                mDate = dayOfMonth.toLong()
+                mMonth = monthOfYear.toLong() + 1
+                mYear = year.toLong()
+                // Create a SimpleDateFormat to format the date as "dd/MM/yyyy"
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                // Format the selected date into a string
+                val formattedDate = dateFormat.format(selectedDate.time)
+                // Update the TextView to display the selected date with the "Selected Date: " prefix
+                findViewById<TextView>(id.create_meeting_date).text = "Selected Date: $formattedDate"
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        // Show the DatePicker dialog
+        datePickerDialog.show()
     }
 
     private fun setupActionBar() {
@@ -133,7 +185,7 @@ class CreateMeetingActivity : BaseActivity() {
         findViewById<TextView>(R.id.meeting_owner_phone).setText("Phone No: " +user.mobileNumber)
     }
 
-    fun propertyCreatedSuccessfully(){
+    fun meetingCreatedSuccessfully(){
         hideProgressDialog()
         setResult(Activity.RESULT_OK)
         finish()
@@ -151,22 +203,24 @@ class CreateMeetingActivity : BaseActivity() {
     }
 
     //register meeting on firestore database
-//    private fun registerMeeting(){
-//        val address: String = mAddress
-//
-//        val meeting = Meeting(
-//            userid = getCurrentUserID(),
-//            ownerid = mPropertyOwnerDetails.id,
-//            propertyid = mPropertyDetails.id,
-//            location = address,
-//            latitude = mLatitude,
-//            longitude = mLongitude,
-//            year = 0,
-//            month = 0,
-//            day = 0,
-//            hour = 0,
-//            minute = 0,
-//
-//            FirestoreClass().createProperty(this,meeting)
-//    }
+    private fun registerMeeting(){
+        val address: String = mAddress
+
+        val meeting = Meeting(
+            userid = getCurrentUserID(),
+            ownerid = mPropertyOwnerDetails.id,
+            propertyid = mPropertyDetails.id,
+            location = address,
+            latitude = mLatitude,
+            longitude = mLongitude,
+            year = mYear,
+            month = mMonth,
+            day = mDate,
+            hour = mHour,
+            minute = mMinute,
+            status = "Pending"
+        )
+
+            FirestoreClass().createMeeting(this,meeting)
+    }
 }
