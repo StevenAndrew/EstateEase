@@ -215,6 +215,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 startActivity(intent)
                 finish()
             }
+            R.id.nav_my_meeting ->{
+                //meeting activity
+//                startActivityForResult(Intent(this, MyMeetingActivity::class.java), MY_PROFILE_REQUEST_CODE)
+                startActivity(Intent(this, MyMeetingActivity::class.java))
+            }
         }
         findViewById<DrawerLayout>(R.id.drawer_layout).closeDrawer(GravityCompat.START)
         return true

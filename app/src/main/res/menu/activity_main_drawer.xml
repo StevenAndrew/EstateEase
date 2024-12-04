@@ -7,6 +7,10 @@
             android:icon="@drawable/ic_nav_user"
             android:title="@string/nav_my_profile"/>
         <item
+            android:id="@+id/nav_my_meeting"
+            android:icon="@drawable/baseline_meeting_room_24"
+            android:title="My Meetings"/>
+        <item
             android:id="@+id/nav_sign_out"
             android:icon="@drawable/ic_nav_sign_out"
             android:title="@string/nav_sign_out"/>
