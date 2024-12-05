@@ -14,6 +14,7 @@ import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.mainUI.CreateMeetingActivity
 import com.example.propertymanagementapp.mainUI.CreatePropertyActivity
 import com.example.propertymanagementapp.mainUI.MainActivity
+import com.example.propertymanagementapp.mainUI.MyMeetingActivity
 import com.example.propertymanagementapp.mainUI.MyProfileActivity
 import com.example.propertymanagementapp.mainUI.PropertyEditActivity
 import com.example.propertymanagementapp.mainUI.PropertyViewActivity
@@ -313,4 +314,27 @@ class FirestoreClass {
                 Toast.makeText(activity,"Meeting added successfully", Toast.LENGTH_SHORT).show()
             }
     }
+
+//    fun getUserMeetingList(activity: MyMeetingActivity){
+//        val meetRef = mFireStore.collection("Meeting")
+//        var query : Query = meetRef
+//        query = query.whereEqualTo("userid",getCurrentUserID())
+//        query = query.whereEqualTo("ownerid",getCurrentUserID())
+//            query.get()
+//            .addOnSuccessListener {
+//                    document->
+//                Log.i(activity.javaClass.simpleName, document.documents.toString())
+//                val meetingList: ArrayList<Meeting> = ArrayList()
+//                for (i in document.documents){
+//                    val meeting = i.toObject(Meeting::class.java)!!
+//                    meeting.id = i.id
+//                    meetingList.add(meeting)
+//                }
+//
+//                activity.populateBoardsListToUI(meetingList)
+//            }.addOnFailureListener {
+//                activity.hideProgressDialog()
+//                Log.e(activity.javaClass.simpleName, "Error getting the property list", it)
+//            }
+//    }
 }

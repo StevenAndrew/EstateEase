@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide
 import com.example.propertymanagementapp.LoginActivities.BaseActivity
 import com.example.propertymanagementapp.R
 import com.example.propertymanagementapp.adapters.PropertyItemsAdapter
+import com.example.propertymanagementapp.data.Meeting
 import com.example.propertymanagementapp.data.Property
 import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.firebase.FirestoreClass
@@ -85,32 +86,32 @@ class MyMeetingActivity : BaseActivity() {
     }
 
     //edit for meeting
-    fun populateBoardsListToUI(propertyList: ArrayList<Property>){
-        hideProgressDialog()
-
-        if (propertyList.size>0){
-            //if there are properties in the database, set list to visible and remove the no properties available text
-            findViewById<RecyclerView>(R.id.rv_property_list).visibility = View.VISIBLE
-            findViewById<TextView>(R.id.tv_no_properties_available).visibility = View.GONE
-
-            findViewById<RecyclerView>(R.id.rv_property_list).layoutManager = LinearLayoutManager(this)
-            findViewById<RecyclerView>(R.id.rv_property_list).setHasFixedSize(true)
-
-            val adapter = PropertyItemsAdapter(this, propertyList)
-            findViewById<RecyclerView>(R.id.rv_property_list).adapter = adapter
-
-            adapter.setOnClickListener(object: PropertyItemsAdapter.OnClickListener{
-                override fun onClick(position: Int, model: Property) {
-                    val intent = Intent(this@MyMeetingActivity, PropertyViewActivity::class.java)
-                    intent.putExtra("id", model.id)
-                    startActivity(intent)
-                }
-            })
-        }else{
-            findViewById<RecyclerView>(R.id.rv_property_list).visibility = View.GONE
-            findViewById<TextView>(R.id.tv_no_properties_available).visibility = View.VISIBLE
-        }
-    }
+//    fun populateBoardsListToUI(meetingList: ArrayList<Meeting>){
+//        hideProgressDialog()
+//
+//        if (meetingList.size>0){
+//            //if there are properties in the database, set list to visible and remove the no properties available text
+//            findViewById<RecyclerView>(R.id.rv_meeting_list).visibility = View.VISIBLE
+//            findViewById<TextView>(R.id.tv_no_meetings_available).visibility = View.GONE
+//
+//            findViewById<RecyclerView>(R.id.rv_meeting_list).layoutManager = LinearLayoutManager(this)
+//            findViewById<RecyclerView>(R.id.rv_meeting_list).setHasFixedSize(true)
+//
+//            val adapter = PropertyItemsAdapter(this, meetingList)
+//            findViewById<RecyclerView>(R.id.rv_meeting_list).adapter = adapter
+//
+//            adapter.setOnClickListener(object: PropertyItemsAdapter.OnClickListener{
+//                override fun onClick(position: Int, model: Property) {
+//                    val intent = Intent(this@MyMeetingActivity, PropertyViewActivity::class.java)
+//                    intent.putExtra("id", model.id)
+//                    startActivity(intent)
+//                }
+//            })
+//        }else{
+//            findViewById<RecyclerView>(R.id.rv_property_list).visibility = View.GONE
+//            findViewById<TextView>(R.id.tv_no_properties_available).visibility = View.VISIBLE
+//        }
+//    }
 
     fun profileUpdateSuccess(){
         hideProgressDialog()

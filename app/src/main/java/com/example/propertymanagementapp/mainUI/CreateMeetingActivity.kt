@@ -38,7 +38,7 @@ class CreateMeetingActivity : BaseActivity() {
 
     private lateinit var mPropertyDetails: Property
     lateinit var mPropertyOwnerDetails: User
-    var propertyIdMeet = ""
+    private var propertyIdMeet = ""
     private var mAddress: String = ""
     private var mLatitude: Double = 0.0
     private var mLongitude: Double = 0.0
@@ -209,7 +209,7 @@ class CreateMeetingActivity : BaseActivity() {
         val meeting = Meeting(
             userid = getCurrentUserID(),
             ownerid = mPropertyOwnerDetails.id,
-            propertyid = mPropertyDetails.id,
+            propertyid = propertyIdMeet,
             location = address,
             latitude = mLatitude,
             longitude = mLongitude,
