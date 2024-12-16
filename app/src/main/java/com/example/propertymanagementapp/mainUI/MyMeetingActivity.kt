@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.propertymanagementapp.LoginActivities.BaseActivity
 import com.example.propertymanagementapp.R
+import com.example.propertymanagementapp.adapters.MeetingItemsAdapter
 import com.example.propertymanagementapp.adapters.PropertyItemsAdapter
 import com.example.propertymanagementapp.data.Meeting
 import com.example.propertymanagementapp.data.Property
@@ -36,10 +37,6 @@ import java.io.IOException
 
 class MyMeetingActivity : BaseActivity() {
 
-    private var mSelectedImageFileUri : Uri? = null
-    private lateinit var mUserDetails: User
-    private var mProfileImageURL: String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,27 +47,10 @@ class MyMeetingActivity : BaseActivity() {
             insets
         }
         setupActionBar()
-
-
+        showProgressDialog()
+        FirestoreClass().getUserMeetingList(this)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK && requestCode == Constants.PICK_IMAGE_REQUEST_CODE && data!!.data != null){
-            mSelectedImageFileUri = data.data
-
-            try {
-                Glide
-                    .with(this@MyMeetingActivity)
-                    .load(mSelectedImageFileUri)
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_user_place_holder)
-                    .into(findViewById<CircleImageView>(R.id.iv_profile_user_image))
-            }catch (e: IOException){
-                e.printStackTrace()
-            }
-        }
-    }
 
     private fun setupActionBar(){
         setSupportActionBar(findViewById(R.id.toolbar_my_meeting_activity))
@@ -86,37 +66,31 @@ class MyMeetingActivity : BaseActivity() {
     }
 
     //edit for meeting
-//    fun populateBoardsListToUI(meetingList: ArrayList<Meeting>){
-//        hideProgressDialog()
-//
-//        if (meetingList.size>0){
-//            //if there are properties in the database, set list to visible and remove the no properties available text
-//            findViewById<RecyclerView>(R.id.rv_meeting_list).visibility = View.VISIBLE
-//            findViewById<TextView>(R.id.tv_no_meetings_available).visibility = View.GONE
-//
-//            findViewById<RecyclerView>(R.id.rv_meeting_list).layoutManager = LinearLayoutManager(this)
-//            findViewById<RecyclerView>(R.id.rv_meeting_list).setHasFixedSize(true)
-//
-//            val adapter = PropertyItemsAdapter(this, meetingList)
-//            findViewById<RecyclerView>(R.id.rv_meeting_list).adapter = adapter
-//
-//            adapter.setOnClickListener(object: PropertyItemsAdapter.OnClickListener{
-//                override fun onClick(position: Int, model: Property) {
-//                    val intent = Intent(this@MyMeetingActivity, PropertyViewActivity::class.java)
+    fun populateBoardsListToUI(meetingList: ArrayList<Meeting>){
+        hideProgressDialog()
+
+        if (meetingList.size>0){
+            //if there are properties in the database, set list to visible and remove the no properties available text
+            findViewById<RecyclerView>(R.id.rv_meeting_list).visibility = View.VISIBLE
+            findViewById<TextView>(R.id.tv_no_meetings_available).visibility = View.GONE
+
+            findViewById<RecyclerView>(R.id.rv_meeting_list).layoutManager = LinearLayoutManager(this)
+            findViewById<RecyclerView>(R.id.rv_meeting_list).setHasFixedSize(true)
+
+            val adapter = MeetingItemsAdapter(this, meetingList)
+            findViewById<RecyclerView>(R.id.rv_meeting_list).adapter = adapter
+
+//            adapter.setOnClickListener(object: MeetingItemsAdapter.OnClickListener{
+//                override fun onClick(position: Int, model: Meeting) {
+//                    val intent = Intent(this@MyMeetingActivity, PropertyViewActivity::class.java)   // change after creating meetingview
 //                    intent.putExtra("id", model.id)
 //                    startActivity(intent)
 //                }
 //            })
-//        }else{
-//            findViewById<RecyclerView>(R.id.rv_property_list).visibility = View.GONE
-//            findViewById<TextView>(R.id.tv_no_properties_available).visibility = View.VISIBLE
-//        }
-//    }
 
-    fun profileUpdateSuccess(){
-        hideProgressDialog()
-
-        setResult(Activity.RESULT_OK)
-        finish()
+        }else{
+            findViewById<RecyclerView>(R.id.rv_meeting_list).visibility = View.GONE
+            findViewById<TextView>(R.id.tv_no_meetings_available).visibility = View.VISIBLE
+        }
     }
 }

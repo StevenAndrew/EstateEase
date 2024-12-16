@@ -17,7 +17,11 @@ data class Meeting(
     var month: Long = 0,
     var day: Long = 0,
     var hour: Long = 0,
-    var minute: Long = 0
+    var minute: Long = 0,
+    var propertyImage: String = "",
+    var meetingCreatorName: String = "",
+    var propertyOwnerName: String = "",
+    var propertyName: String = ""
 
 ): Parcelable {
     constructor(parcel: Parcel) : this(
@@ -33,8 +37,11 @@ data class Meeting(
         parcel.readValue(Long::class.java.classLoader) as Long,
         parcel.readValue(Long::class.java.classLoader) as Long,
         parcel.readValue(Long::class.java.classLoader) as Long,
-        parcel.readValue(Long::class.java.classLoader) as Long
-
+        parcel.readValue(Long::class.java.classLoader) as Long,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!
     ) {
     }
 
@@ -52,6 +59,10 @@ data class Meeting(
         parcel.writeLong(day)
         parcel.writeLong(hour)
         parcel.writeLong(minute)
+        parcel.writeString(propertyImage)
+        parcel.writeString(meetingCreatorName)
+        parcel.writeString(propertyOwnerName)
+        parcel.writeString(propertyName)
     }
 
     override fun describeContents(): Int {

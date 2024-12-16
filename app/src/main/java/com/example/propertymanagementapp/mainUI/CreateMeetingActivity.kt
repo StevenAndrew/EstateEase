@@ -38,6 +38,7 @@ class CreateMeetingActivity : BaseActivity() {
 
     private lateinit var mPropertyDetails: Property
     lateinit var mPropertyOwnerDetails: User
+    lateinit var mMeetingCreatorDetails: User
     private var propertyIdMeet = ""
     private var mAddress: String = ""
     private var mLatitude: Double = 0.0
@@ -185,6 +186,11 @@ class CreateMeetingActivity : BaseActivity() {
         findViewById<TextView>(R.id.meeting_owner_phone).setText("Phone No: " +user.mobileNumber)
     }
 
+    fun CurrentUserDetails(user: User){
+        hideProgressDialog()
+        mMeetingCreatorDetails = user
+    }
+
     fun meetingCreatedSuccessfully(){
         hideProgressDialog()
         setResult(Activity.RESULT_OK)
@@ -218,7 +224,11 @@ class CreateMeetingActivity : BaseActivity() {
             day = mDate,
             hour = mHour,
             minute = mMinute,
-            status = "Pending"
+            status = "Pending",
+            propertyImage = mPropertyDetails.image,
+            meetingCreatorName = mMeetingCreatorDetails.name,
+            propertyOwnerName = mPropertyOwnerDetails.name,
+            propertyName = mPropertyDetails.name
         )
 
             FirestoreClass().createMeeting(this,meeting)
