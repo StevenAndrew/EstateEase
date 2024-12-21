@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
@@ -31,6 +32,19 @@ open class MeetingItemsAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
+        var hour : String = "00"
+        var minute : String = "00"
+        if (model.hour<10){
+            hour = "0${model.hour}"
+        }else{
+            hour = model.hour.toString()
+        }
+
+        if (model.minute<10){
+            minute = "0${model.minute}"
+        }else{
+            minute = model.minute.toString()
+        }
         if (holder is MyViewHolder){
             Glide
                 .with(context)
@@ -39,15 +53,28 @@ open class MeetingItemsAdapter(private val context: Context,
                 .placeholder(R.drawable.add_screen_image_placeholder)
                 .into(holder.itemView.findViewById<AppCompatImageView>(R.id.item_meeting_image))
 
-            holder.itemView.findViewById<TextView>(R.id.tv_meeting_name).text = "Property: ${model.propertyName}"
+            holder.itemView.findViewById<TextView>(R.id.tv_meeting_name).text = "${model.propertyName}"
 
             holder.itemView.findViewById<TextView>(R.id.tv_meeting_created_by).text = "Meeting Recipient: ${model.meetingCreatorName}"
 
             holder.itemView.findViewById<TextView>(R.id.tv_meeting_location).text = "Meeting Location: ${model.location}"
 
-            holder.itemView.setOnClickListener {
-                if (onClickListener!=null){
-                    onClickListener!!.onClick(position, model)
+            holder.itemView.findViewById<TextView>(R.id.tv_meeting_status).text = "Status: ${model.status}"
+
+            holder.itemView.findViewById<TextView>(R.id.tv_meeting_date).text = "Date: ${model.day}-${model.month}"
+
+            holder.itemView.findViewById<TextView>(R.id.tv_meeting_time).text = "Time: $hour:$minute"
+
+            if (model.ownerid == FirestoreClass().getCurrentUserID() && model.status == "Pending"){
+                holder.itemView.findViewById<Button>(R.id.btn_accept_meeting).visibility = View.VISIBLE
+                holder.itemView.findViewById<Button>(R.id.btn_decline_meeting).visibility = View.VISIBLE
+            }
+
+            if (model.status != "Declined"){
+                holder.itemView.setOnClickListener {
+                    if (onClickListener!=null){
+                        onClickListener!!.onClick(position, model)
+                    }
                 }
             }
         }

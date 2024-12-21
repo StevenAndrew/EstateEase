@@ -80,13 +80,13 @@ class MyMeetingActivity : BaseActivity() {
             val adapter = MeetingItemsAdapter(this, meetingList)
             findViewById<RecyclerView>(R.id.rv_meeting_list).adapter = adapter
 
-//            adapter.setOnClickListener(object: MeetingItemsAdapter.OnClickListener{
-//                override fun onClick(position: Int, model: Meeting) {
-//                    val intent = Intent(this@MyMeetingActivity, PropertyViewActivity::class.java)   // change after creating meetingview
-//                    intent.putExtra("id", model.id)
-//                    startActivity(intent)
-//                }
-//            })
+            adapter.setOnClickListener(object: MeetingItemsAdapter.OnClickListener{
+                override fun onClick(position: Int, model: Meeting) {
+                    val intent = Intent(this@MyMeetingActivity, MeetingViewActivity::class.java)   // change after creating meetingview
+                    intent.putExtra("id", model.id)
+                    startActivity(intent)
+                }
+            })
 
         }else{
             findViewById<RecyclerView>(R.id.rv_meeting_list).visibility = View.GONE

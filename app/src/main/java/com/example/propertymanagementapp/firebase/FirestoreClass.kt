@@ -15,11 +15,13 @@ import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.mainUI.CreateMeetingActivity
 import com.example.propertymanagementapp.mainUI.CreatePropertyActivity
 import com.example.propertymanagementapp.mainUI.MainActivity
+import com.example.propertymanagementapp.mainUI.MeetingViewActivity
 import com.example.propertymanagementapp.mainUI.MyMeetingActivity
 import com.example.propertymanagementapp.mainUI.MyProfileActivity
 import com.example.propertymanagementapp.mainUI.PropertyEditActivity
 import com.example.propertymanagementapp.mainUI.PropertyViewActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
@@ -317,26 +319,6 @@ class FirestoreClass {
             }
     }
 
-    fun getUserMeetingList(activity: MyMeetingActivity){
-        mFireStore.collection("Meeting")
-            .get()
-            .addOnSuccessListener {
-                    document->
-                Log.i(activity.javaClass.simpleName, document.documents.toString())
-                val meetingList: ArrayList<Meeting> = ArrayList()
-                for (i in document.documents){
-                    val meeting = i.toObject(Meeting::class.java)!!
-                    meeting.id = i.id
-                    meetingList.add(meeting)
-                }
-                activity.hideProgressDialog()
-                activity.populateBoardsListToUI(meetingList)
-            }.addOnFailureListener {
-                activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error getting the property list", it)
-            }
-    }
-
     fun loadCurrentUserData(activity: Activity){
         mFireStore.collection("Users")
             .document(getCurrentUserID())
@@ -350,6 +332,52 @@ class FirestoreClass {
                     }
                 }
 
+            }
+    }
+
+    fun getUserMeetingList(activity: MyMeetingActivity){
+        var query : Query = mFireStore.collection("Meeting")
+        query = query.where(
+            Filter.or(
+            Filter.equalTo("ownerid", getCurrentUserID()),
+            Filter.equalTo("userid", getCurrentUserID())
+        ))
+            query.get()
+            .addOnSuccessListener {
+                    document->
+                Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val meetingList: ArrayList<Meeting> = ArrayList()
+                for (i in document.documents){
+                    val meeting = i.toObject(Meeting::class.java)!!
+                    meeting.id = i.id
+                    meetingList.add(meeting)
+                }
+                activity.hideProgressDialog()
+                activity.populateBoardsListToUI(meetingList)
+            }.addOnFailureListener {
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error getting the Meeting list", it)
+            }
+    }
+
+    fun getMeetingDetails(activity: Activity, meetingId: String){
+        mFireStore.collection("Meeting")
+            .document(meetingId)
+            .get()
+            .addOnSuccessListener {
+                    document ->
+                Log.i(activity.javaClass.simpleName, document.toString())
+                when (activity){
+                    is MeetingViewActivity -> {
+                        activity.meetingDetails(document.toObject(Meeting::class.java)!!)
+                    }
+                }
+            }.addOnFailureListener{
+                when (activity){
+                    is MeetingViewActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
             }
     }
 }
