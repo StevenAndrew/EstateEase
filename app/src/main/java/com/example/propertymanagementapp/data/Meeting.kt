@@ -6,7 +6,8 @@ import java.sql.Time
 
 data class Meeting(
     var id: String= "",
-    var status: String= "",
+    var statusOwner: String= "",
+    var statusCreator: String= "",
     val userid: String = "",
     val ownerid: String = "",
     val propertyid: String = "",
@@ -31,6 +32,7 @@ data class Meeting(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
+        parcel.readString()!!,
         parcel.readValue(Long::class.java.classLoader) as Double,
         parcel.readValue(Long::class.java.classLoader) as Double,
         parcel.readValue(Long::class.java.classLoader) as Long,
@@ -47,7 +49,8 @@ data class Meeting(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
-        parcel.writeString(status)
+        parcel.writeString(statusOwner)
+        parcel.writeString(statusCreator)
         parcel.writeString(userid)
         parcel.writeString(ownerid)
         parcel.writeString(propertyid)

@@ -59,18 +59,22 @@ open class MeetingItemsAdapter(private val context: Context,
 
             holder.itemView.findViewById<TextView>(R.id.tv_meeting_location).text = "Meeting Location: ${model.location}"
 
-            holder.itemView.findViewById<TextView>(R.id.tv_meeting_status).text = "Status: ${model.status}"
+            if (model.ownerid == FirestoreClass().getCurrentUserID()){
+                holder.itemView.findViewById<TextView>(R.id.tv_meeting_status).text = "Status: ${model.statusOwner}"
+            }else{
+                holder.itemView.findViewById<TextView>(R.id.tv_meeting_status).text = "Status: ${model.statusCreator}"
+            }
 
             holder.itemView.findViewById<TextView>(R.id.tv_meeting_date).text = "Date: ${model.day}-${model.month}"
 
             holder.itemView.findViewById<TextView>(R.id.tv_meeting_time).text = "Time: $hour:$minute"
 
-            if (model.ownerid == FirestoreClass().getCurrentUserID() && model.status == "Pending"){
+            if ((model.ownerid == FirestoreClass().getCurrentUserID() && model.statusOwner == "Awaiting Confirmation") || (model.userid == FirestoreClass().getCurrentUserID() && model.statusCreator == "Awaiting Confirmation")){
                 holder.itemView.findViewById<Button>(R.id.btn_accept_meeting).visibility = View.VISIBLE
                 holder.itemView.findViewById<Button>(R.id.btn_decline_meeting).visibility = View.VISIBLE
             }
 
-            if (model.status != "Declined"){
+            if (model.statusOwner != "Declined" && model.statusCreator != "Declined"){
                 holder.itemView.setOnClickListener {
                     if (onClickListener!=null){
                         onClickListener!!.onClick(position, model)
