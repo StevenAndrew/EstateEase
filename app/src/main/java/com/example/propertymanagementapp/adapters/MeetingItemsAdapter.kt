@@ -1,21 +1,18 @@
 package com.example.propertymanagementapp.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.propertymanagementapp.R
 import com.example.propertymanagementapp.data.Meeting
-import com.example.propertymanagementapp.data.Property
-import com.example.propertymanagementapp.data.User
 import com.example.propertymanagementapp.firebase.FirestoreClass
+import com.example.propertymanagementapp.mainUI.MyMeetingActivity
 
 open class MeetingItemsAdapter(private val context: Context,
                                 private var list: ArrayList<Meeting>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -72,6 +69,19 @@ open class MeetingItemsAdapter(private val context: Context,
             if ((model.ownerid == FirestoreClass().getCurrentUserID() && model.statusOwner == "Awaiting Confirmation") || (model.userid == FirestoreClass().getCurrentUserID() && model.statusCreator == "Awaiting Confirmation")){
                 holder.itemView.findViewById<Button>(R.id.btn_accept_meeting).visibility = View.VISIBLE
                 holder.itemView.findViewById<Button>(R.id.btn_decline_meeting).visibility = View.VISIBLE
+            }else{
+                holder.itemView.findViewById<Button>(R.id.btn_accept_meeting).visibility = View.GONE
+                holder.itemView.findViewById<Button>(R.id.btn_decline_meeting).visibility = View.GONE
+            }
+
+            holder.itemView.findViewById<Button>(R.id.btn_accept_meeting).setOnClickListener {
+                FirestoreClass().acceptMeeting(model.id)
+                FirestoreClass().getUserMeetingList(MyMeetingActivity())
+            }
+
+            holder.itemView.findViewById<Button>(R.id.btn_decline_meeting).setOnClickListener {
+                FirestoreClass().declineMeeting(model.id)
+                FirestoreClass().getUserMeetingList(MyMeetingActivity())
             }
 
             if (model.statusOwner != "Declined" && model.statusCreator != "Declined"){

@@ -380,4 +380,26 @@ class FirestoreClass {
                 }
             }
     }
+
+    fun acceptMeeting(meetingId: String){
+        mFireStore.collection("Meeting")
+            .document(meetingId)
+            .update(
+                mapOf(
+                    "statusCreator" to "Accepted",
+                    "statusOwner" to "Accepted",
+                )
+            )
+    }
+
+    fun declineMeeting(meetingId: String){
+        mFireStore.collection("Meeting")
+            .document(meetingId)
+            .update(
+                mapOf(
+                    "statusCreator" to "Declined",
+                    "statusOwner" to "Declined",
+                )
+            )
+    }
 }

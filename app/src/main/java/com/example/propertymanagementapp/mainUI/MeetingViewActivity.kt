@@ -3,6 +3,7 @@ package com.example.propertymanagementapp.mainUI
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -77,6 +78,13 @@ class MeetingViewActivity : BaseActivity() {
         }else{
             minute = meeting.minute.toString()
         }
+
+        if (meeting.statusOwner == "Awaiting Confirmation" || meeting.statusCreator == "Awaiting Confirmation" ){
+            findViewById<Button>(R.id.btn_view_reschedule).visibility = View.VISIBLE
+        }else{
+            findViewById<Button>(R.id.btn_view_reschedule).visibility = View.GONE
+        }
+
         Glide
             .with(this)
             .load(meeting.propertyImage)
