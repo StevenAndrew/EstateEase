@@ -25,6 +25,11 @@
         android:theme="@style/Theme.PropertyManagementApp"
         tools:targetApi="31">
         <activity
+            android:name=".mainUI.RescheduleMeetingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
             android:name=".mainUI.MeetingViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"

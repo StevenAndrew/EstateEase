@@ -20,6 +20,7 @@ import com.example.propertymanagementapp.mainUI.MyMeetingActivity
 import com.example.propertymanagementapp.mainUI.MyProfileActivity
 import com.example.propertymanagementapp.mainUI.PropertyEditActivity
 import com.example.propertymanagementapp.mainUI.PropertyViewActivity
+import com.example.propertymanagementapp.mainUI.RescheduleMeetingActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
@@ -159,6 +160,9 @@ class FirestoreClass {
                         activity.propertyImage(document.toObject(Property::class.java)!!)
                         loadUserDataInProperty(activity, document.toObject(Property::class.java)!!)
                         loadCurrentUserData(activity)
+                    }
+                    is RescheduleMeetingActivity -> {
+                        activity.setLocationAsProperty(document.toObject(Property::class.java)!!)
                     }
                 }
             }.addOnFailureListener{
@@ -371,6 +375,9 @@ class FirestoreClass {
                     is MeetingViewActivity -> {
                         activity.meetingDetails(document.toObject(Meeting::class.java)!!)
                     }
+                    is RescheduleMeetingActivity -> {
+                        activity.updateMeetingDetails(document.toObject(Meeting::class.java)!!)
+                    }
                 }
             }.addOnFailureListener{
                 when (activity){
@@ -401,5 +408,21 @@ class FirestoreClass {
                     "statusOwner" to "Declined",
                 )
             )
+    }
+
+    fun rescheduleMeetingData(activity: RescheduleMeetingActivity, meetingHashMap: HashMap<String, Any>, meetingId: String){
+        mFireStore.collection("Meeting")
+            .document(meetingId)
+            .update(meetingHashMap)
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "Meeting Rescheduled successfully!")
+                Toast.makeText(activity, "Meeting Rescheduled successfully!", Toast.LENGTH_LONG).show()
+                activity.meetingRescheduleSuccess()
+            }.addOnFailureListener {
+                    e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while updating the Meeting",e)
+                Toast.makeText(activity, "Meeting Rescheduled successfully!", Toast.LENGTH_LONG).show()
+            }
     }
 }

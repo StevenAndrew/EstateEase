@@ -62,7 +62,10 @@ class MyMeetingActivity : BaseActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_white_arrow_back_24)
             actionBar.title = "My Meetings"
         }
-        findViewById<Toolbar>(R.id.toolbar_my_meeting_activity).setNavigationOnClickListener{onBackPressed()}
+        findViewById<Toolbar>(R.id.toolbar_my_meeting_activity).setNavigationOnClickListener{
+            val intent = Intent(this@MyMeetingActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     //edit for meeting

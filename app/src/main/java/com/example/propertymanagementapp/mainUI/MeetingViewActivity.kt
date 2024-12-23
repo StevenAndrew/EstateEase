@@ -43,11 +43,11 @@ class MeetingViewActivity : BaseActivity() {
             startActivity(intent)
         }
 
-//        findViewById<Button>(R.id.btn_edit_property).setOnClickListener{
-//            val intent = Intent(this, PropertyEditActivity::class.java)
-//            intent.putExtra("id", propertyId)
-//            startActivity(intent)
-//        }
+        findViewById<Button>(R.id.btn_view_reschedule).setOnClickListener{
+            val intent = Intent(this, RescheduleMeetingActivity::class.java)
+            intent.putExtra("id", meetingId)
+            startActivity(intent)
+        }
     }
 
     private fun setupActionBar() {
